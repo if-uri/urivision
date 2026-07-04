@@ -1,0 +1,19 @@
+[project]
+name = "urivision"
+version = "0.1.0"
+description = "VURI — Visual URI Process Language: point at an image + model + aspects + decision question + result schema; get a DecisionCard (decision with evidence), not a description."
+requires-python = ">=3.10"
+dependencies = []                    # rdzeń bez zależności; runner wymaga: pip install 'urivision[litellm]'
+
+[project.optional-dependencies]
+litellm = ["litellm>=1.40"]
+
+[project.scripts]
+urivision = "urivision.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

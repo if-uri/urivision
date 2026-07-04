@@ -1,0 +1,8 @@
+# Przegląd zrzutu ekranu: czy można pokazać klientowi bez poprawek?
+proc view://local/screenshot/query/decision-card
+use llm://gemini/gemini-3.5-flash as vision(reasoning=low,json=strict)
+read artifact://screenshots/prototyp3d/home.png as image/png
+inspect image for aspect://ui/layout, aspect://ui/copy, aspect://ui/cta, aspect://ui/risk
+decide "Czy ekran można pokazać klientowi bez poprawek?"
+emit artifact://reports/prototyp3d/home.decision.json as schema://vision/decision-card.v1
+policy policy://vision/no-guessing, policy://vision/evidence-required
