@@ -1,42 +1,52 @@
-# urivision | 15 func | 8f | 455L | python | 2026-07-05
+# urivision | 90 func | 25f | 19129L | python | 2026-07-05
 # generated in 0.00s
 
 HEALTH:
-  CC̄=4.4  critical=2 (limit:10)  dup=0  cycles=0
+  CC̄=4.2  critical=10 (limit:10)  dup=0  cycles=2
 
-ALERTS[4]:
+ALERTS[15]:
+  !!! high_fan_out     build_default_registry = 39 (limit:10)
+  !!! high_fan_out     main = 37 (limit:10)
+  !!  cc_exceeded      main = 22 (limit:15)
   !!  high_fan_out     parse = 16 (limit:10)
   !!  high_fan_out     run = 15 (limit:10)
+  !!  high_fan_out     route_intent = 15 (limit:10)
   !   cc_exceeded      parse = 19 (limit:15)
-  !   high_fan_out     main = 11 (limit:10)
+  !   cc_exceeded      probe = 17 (limit:15)
+  !   high_fan_out     main = 14 (limit:10)
+  !   high_fan_out     build_matrix = 12 (limit:10)
 
-MODULES[16] (top by size):
-  M[src/urivision/dsl.py] 93L C:3 F:2 CC↑19 D:1 (python)
-  M[project.sh] 66L C:0 F:0 CC↑0 D:0 (shell)
-  M[src/urivision/runner_litellm.py] 54L C:0 F:2 CC↑4 D:0 (python)
-  M[src/urivision/schemas.py] 41L C:0 F:1 CC↑2 D:1 (python)
-  M[src/urivision/validators.py] 38L C:1 F:2 CC↑14 D:1 (python)
-  M[src/urivision/__init__.py] 33L C:0 F:3 CC↑1 D:1 (python)
-  M[src/urivision/cli.py] 28L C:0 F:1 CC↑5 D:0 (python)
-  M[src/urivision/compiler.py] 28L C:0 F:1 CC↑4 D:1 (python)
-  M[src/urivision/resolver.py] 27L C:0 F:3 CC↑6 D:2 (python)
-  M[pyproject.toml] 19L C:0 F:0 CC↑0 D:0 (toml)
-  M[src/urivision.egg-info/SOURCES.txt] 17L C:0 F:0 CC↑0 D:0 (txt)
-  M[tree.sh] 4L C:0 F:0 CC↑0 D:0 (shell)
-  M[src/urivision.egg-info/requires.txt] 3L C:0 F:0 CC↑0 D:0 (txt)
-  M[src/urivision.egg-info/entry_points.txt] 2L C:0 F:0 CC↑0 D:0 (txt)
-  M[src/urivision.egg-info/dependency_links.txt] 1L C:0 F:0 CC↑0 D:0 (txt)
-  LANGS: python:8/txt:5/shell:2/toml:1
+MODULES[49] (top by size):
+  M[artifacts/native-lab-matrix.json] 9534L C:0 F:0 CC↑0 D:0 (json)
+  M[artifacts/backend-matrix.json] 5965L C:0 F:0 CC↑0 D:0 (json)
+  M[src/urivision/runtime.py] 513L C:1 F:13 CC↑14 D:5 (python)
+  M[src/urivision/native_profiles.py] 427L C:1 F:6 CC↑9 D:3 (python)
+  M[planfile.yaml] 279L C:0 F:0 CC↑0 D:0 (yaml)
+  M[src/urivision/registry.py] 209L C:3 F:14 CC↑12 D:6 (python)
+  M[src/urivision/method_router.py] 144L C:1 F:3 CC↑12 D:2 (python)
+  M[src/urivision/cli.py] 140L C:0 F:2 CC↑22 D:0 (python)
+  M[src/urivision/platforms.py] 138L C:1 F:3 CC↑5 D:1 (python)
+  M[tools/run_native_lab_matrix.py] 117L C:0 F:4 CC↑8 D:0 (python)
+  M[tools/probe_native_host.py] 112L C:0 F:4 CC↑17 D:0 (python)
+  M[src/urivision/uri.py] 100L C:1 F:4 CC↑7 D:1 (python)
+  M[src/urivision/schemas.py] 99L C:0 F:1 CC↑2 D:1 (python)
+  M[src/urivision/orchestrator.py] 95L C:2 F:7 CC↑10 D:1 (python)
+  M[prefact.yaml] 94L C:0 F:0 CC↑0 D:0 (yaml)
+  LANGS: python:24/shell:10/json:6/yaml:4/other:1/txt:1/x11-novnc:1/yml:1/toml:1
 
-HOTSPOTS[3]:
+HOTSPOTS[10]:
+  ★ build_default_registry fan=39  // Orchestrates 39 calls
+  ★ main fan=37  // Orchestrates 37 calls
   ★ parse fan=16  // Parsuj źródło .vuri → AST procesu. Rzuca VuriSyntaxError na niepoprawnej instruk
   ★ run fan=15  // Wykonaj proces VURI: obraz+prompt → model → DecisionCard (zwalidowany schematem)
-  ★ main fan=11  // Orchestrates 11 calls
+  ★ route_intent fan=15  // Orchestrates 15 calls
 
-REFACTOR[3]:
-  [1] M/L Split parse (CC=19)
-  [2] M/M Reduce parse fan-out (currently 16)
-  [3] M/M Reduce run fan-out (currently 15)
+REFACTOR[11]:
+  [1] H/H Split god module src/urivision/runtime.py (513L, 1 classes)
+  [2] H/H Split god module artifacts/backend-matrix.json (5965L, 0 classes)
+  [3] H/H Split god module artifacts/native-lab-matrix.json (9534L, 0 classes)
+  [4] M/L Split parse (CC=19)
+  [5] M/L Split probe (CC=17)
 
 EVOLUTION:
-  2026-07-05 CC̄=4.4 crit=2 455L // Automated analysis
+  2026-07-05 CC̄=4.2 crit=10 19129L // Automated analysis

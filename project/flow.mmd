@@ -5,14 +5,22 @@ flowchart TD
     classDef entry fill:#4dabf7,stroke:#1971c2,color:#fff
 
     subgraph Core
-        src__urivision__cli__main["main"]
         src__urivision__runner_litellm__run["run"]
-        src__urivision__run_source["run_source"]
-        src__urivision__run_file["run_file"]
-        src__urivision__run["run"]
-        src__urivision__validators___scheme["_scheme"]
-        src__urivision__validators__validate("validate CC=14")
         src__urivision__dsl__parse{{parse CC=19}}
+        src__urivision__registry__CapabilityRegistry__capability["capability"]
+        src__urivision__registry__CapabilityRegistry__find["find"]
+        src__urivision__registry__CapabilityRegistry__call["call"]
+        src__urivision__registry__CapabilityRegistry__catalog_json["catalog_json"]
+        src__urivision__registry__CapabilityRegistry__catalog_markdown["catalog_markdown"]
+        src__urivision__registry__CapabilityRegistry__catalog_prompt["catalog_prompt"]
+        src__urivision__registry__CapabilityRegistry__tools_json["tools_json"]
+        src__urivision__registry__pretty_json["pretty_json"]
+        tools__check_confidence_gate__main["main"]
+        tools__run_native_lab_matrix__main["main"]
+        tools__run_backend_matrix__main["main"]
+        tools__probe_native_host__probe{{probe CC=17}}
+        tools__probe_native_host__main["main"]
+        ...["+23 more"]
     end
 
-    class src__urivision__cli__main,src__urivision__runner_litellm__run,src__urivision__run entry
+    class src__urivision__runner_litellm__run,src__urivision__registry__CapabilityRegistry__capability,src__urivision__registry__CapabilityRegistry__find,src__urivision__registry__CapabilityRegistry__call,src__urivision__registry__CapabilityRegistry__catalog_json,src__urivision__registry__CapabilityRegistry__catalog_markdown,src__urivision__registry__CapabilityRegistry__catalog_prompt,src__urivision__registry__CapabilityRegistry__tools_json,src__urivision__registry__pretty_json,tools__check_confidence_gate__main entry

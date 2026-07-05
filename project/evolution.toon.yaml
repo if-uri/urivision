@@ -1,19 +1,42 @@
-# code2llm/evolution | 15 func | 8f | 2026-07-05
+# code2llm/evolution | 89 func | 24f | 2026-07-05
 # generated in 0.00s
 
-NEXT[1] (ranked by impact):
-  [1] !  SPLIT-FUNC      parse  CC=19  fan=16
+NEXT[6] (ranked by impact):
+  [1] !! SPLIT           src/urivision/runtime.py
+      WHY: 513L, 1 classes, max CC=14
+      EFFORT: ~4h  IMPACT: 7182
+
+  [2] !  SPLIT-FUNC      main  CC=22  fan=37
+      WHY: CC=22 exceeds 15
+      EFFORT: ~1h  IMPACT: 814
+
+  [3] !  SPLIT-FUNC      parse  CC=19  fan=16
       WHY: CC=19 exceeds 15
       EFFORT: ~1h  IMPACT: 304
 
+  [4] !  SPLIT-FUNC      probe  CC=17  fan=9
+      WHY: CC=17 exceeds 15
+      EFFORT: ~1h  IMPACT: 153
 
-RISKS[0]: none
+  [5] !! SPLIT           artifacts/native-lab-matrix.json
+      WHY: 9534L, 0 classes, max CC=0
+      EFFORT: ~4h  IMPACT: 0
+
+  [6] !! SPLIT           artifacts/backend-matrix.json
+      WHY: 5965L, 0 classes, max CC=0
+      EFFORT: ~4h  IMPACT: 0
+
+
+RISKS[3]:
+  ⚠ Splitting artifacts/native-lab-matrix.json may break 0 import paths
+  ⚠ Splitting artifacts/backend-matrix.json may break 0 import paths
+  ⚠ Splitting src/urivision/runtime.py may break 13 import paths
 
 METRICS-TARGET:
-  CC̄:          4.4 → ≤3.1
-  max-CC:      19 → ≤9
-  god-modules: 0 → 0
-  high-CC(≥15): 1 → ≤0
+  CC̄:          4.3 → ≤3.0
+  max-CC:      22 → ≤11
+  god-modules: 3 → 0
+  high-CC(≥15): 3 → ≤1
   hub-types:   0 → ≤0
 
 PATTERNS (language parser shared logic):
@@ -41,4 +64,4 @@ PATTERNS (language parser shared logic):
     - Standardized FunctionInfo/ClassInfo models
 
 HISTORY:
-  (first run — no previous data)
+  prev CC̄=4.4 → now CC̄=4.3

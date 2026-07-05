@@ -1,30 +1,70 @@
-# urivision | 12f 503L | python:9,shell:2,less:1 | 2026-07-05
-# stats: 21 func | 4 cls | 12 mod | CC̄=4.0 | critical:2 | cycles:0
-# alerts[5]: CC parse=19; CC validate=14; CC test_parse_reads_all_parts=7; CC artifact_path=6; CC main=5
-# hotspots[5]: run fan=14; main fan=11; parse fan=10; artifact_path fan=6; test_missing_emit_rejected fan=6
+# urivision | 39f 3267L | python:28,shell:10,less:1 | 2026-07-05
+# stats: 72 func | 19 cls | 39 mod | CC̄=4.8 | critical:9 | cycles:0
+# alerts[5]: CC main=22; CC parse=19; CC probe=17; CC _find_element=14; CC validate=14
+# hotspots[5]: main fan=28; build_default_registry fan=27; route_intent fan=14; run fan=14; main fan=12
 # evolution: baseline
 # Keys: M=modules, D=details, i=imports, e=exports, c=classes, f=functions, m=methods
-M[12]:
-  app.doql.less,27
+M[39]:
+  app.doql.less,90
+  docker/entrypoint-wayland.sh,11
+  docker/entrypoint-x11-novnc.sh,10
+  examples/function_binding_example.py,19
+  native/android/probe_android.sh,19
+  native/ios/probe_ios.sh,23
+  native/linux/probe_linux_display.sh,32
+  native/linux/run_smoke.sh,9
+  native/macos/probe_macos_ax.sh,21
+  native/macos/run_smoke.sh,8
   project.sh,66
-  src/urivision/__init__.py,34
-  src/urivision/cli.py,29
+  src/urivision/__init__.py,48
+  src/urivision/bindings.py,69
+  src/urivision/capability.py,90
+  src/urivision/cli.py,141
   src/urivision/compiler.py,29
   src/urivision/dsl.py,94
+  src/urivision/llm_catalog.py,16
+  src/urivision/method_router.py,145
+  src/urivision/native_profiles.py,428
+  src/urivision/orchestrator.py,96
+  src/urivision/platforms.py,139
+  src/urivision/registry.py,210
   src/urivision/resolver.py,28
   src/urivision/runner_litellm.py,55
-  src/urivision/schemas.py,42
+  src/urivision/runtime.py,514
+  src/urivision/schemas.py,100
+  src/urivision/uri.py,101
   src/urivision/validators.py,39
+  tests/test_backend_profiles.py,38
   tests/test_dsl.py,55
+  tests/test_native_lab.py,57
+  tests/test_uri_runtime.py,58
+  tools/check_confidence_gate.py,30
+  tools/probe_native_host.py,113
+  tools/probe_runtime.py,93
+  tools/run_backend_matrix.py,50
+  tools/run_native_lab_matrix.py,118
   tree.sh,5
 D:
+  examples/function_binding_example.py:
+    e: add
+    add(a;b)
   src/urivision/__init__.py:
     e: run_source,run_file,run
     run_source(text)
     run_file(path)
     run(text)
+  src/urivision/bindings.py:
+    e: uri_function,register_uri_function,register_module_uri_functions
+    uri_function(uri_pattern)
+    register_uri_function(registry;fn)
+    register_module_uri_functions(registry;module)
+  src/urivision/capability.py:
+    e: RuntimeContext,Capability
+    RuntimeContext: emit(1)  # Execution context passed to every capability handler.
+    Capability: to_dict(0),to_llm_card(0)
   src/urivision/cli.py:
-    e: main
+    e: _json_arg,main
+    _json_arg(blob)
     main(argv)
   src/urivision/compiler.py:
     e: compile_prompt
@@ -36,6 +76,46 @@ D:
     VuriSyntaxError:
     _parse_options(blob)
     parse(text)
+  src/urivision/llm_catalog.py:
+    e: compile_runtime_prompt,compile_runtime_tools
+    compile_runtime_prompt(runtime)
+    compile_runtime_tools(runtime)
+  src/urivision/method_router.py:
+    e: route_intent,route_matrix,RouteDecision
+    RouteDecision: to_dict(0)
+    route_intent(intent;profile)
+    route_matrix()
+  src/urivision/native_profiles.py:
+    e: list_native_targets,get_native_target,coverage_summary,detect_local_host,native_matrix_markdown,NativeTargetProfile
+    NativeTargetProfile: to_dict(0)
+    list_native_targets()
+    get_native_target(target_id)
+    coverage_summary()
+    detect_local_host()
+    native_matrix_markdown(targets)
+  src/urivision/orchestrator.py:
+    e: _get_path,_resolve_templates,_check_expectation,run_plan,run_plan_file,PlanError,PlanRunner
+    PlanError:
+    PlanRunner: __init__(1),run(1)
+    _get_path(data;path)
+    _resolve_templates(value;outputs)
+    _check_expectation(result;expectation)
+    run_plan(plan)
+    run_plan_file(path)
+  src/urivision/platforms.py:
+    e: list_backend_profiles,get_backend_profile,BackendProfile
+    BackendProfile: to_dict(0)
+    list_backend_profiles()
+    get_backend_profile(name)
+  src/urivision/registry.py:
+    e: _json_type_ok,validate_payload,schema_from_signature,pretty_json,UriDispatchError,PayloadValidationError,CapabilityRegistry
+    UriDispatchError:
+    PayloadValidationError:
+    CapabilityRegistry: __init__(0),register(2),capability(1),find(1),call(2),all(0),catalog_json(0),catalog_markdown(0),catalog_prompt(0),tools_json(0)
+    _json_type_ok(value;expected)
+    validate_payload(schema;payload)
+    schema_from_signature(fn)
+    pretty_json(data)
   src/urivision/resolver.py:
     e: model_id,artifact_path,label
     model_id(model)
@@ -45,14 +125,35 @@ D:
     e: _image_data_url,run
     _image_data_url(path;mime)
     run(p)
+  src/urivision/runtime.py:
+    e: _schema,_ok,_default_tree,_ensure_state,_walk,_find_element,build_default_registry,default_runtime,UriRuntime
+    UriRuntime: __init__(1),call(2),catalog(1),explain(1),trace(0)
+    _schema(props;required)
+    _ok()
+    _default_tree()
+    _ensure_state(ctx)
+    _walk(node)
+    _find_element(tree;payload)
+    build_default_registry()
+    default_runtime()
   src/urivision/schemas.py:
     e: resolve_schema
     resolve_schema(uri)
+  src/urivision/uri.py:
+    e: parse_uri,normalize_uri,_match_segment,match_uri,UriParts
+    UriParts: kind(0),name(0),area(0)
+    parse_uri(uri)
+    normalize_uri(uri)
+    _match_segment(pattern;value;captures)
+    match_uri(pattern;uri)
   src/urivision/validators.py:
     e: _scheme,validate,VuriValidationError
     VuriValidationError:
     _scheme(uri)
     validate(p)
+  tests/test_backend_profiles.py:
+    e: BackendProfileTests
+    BackendProfileTests: test_default_matrix_has_four_profiles(0),test_platform_profile_capability(0),test_health_check_for_all_matrix_profiles(0),test_list_backend_profiles(0)
   tests/test_dsl.py:
     e: test_parse_reads_all_parts,test_missing_emit_rejected,test_bad_scheme_rejected,test_non_image_rejected,test_unknown_statement_rejected,test_dry_run_compiles_call_without_model
     test_parse_reads_all_parts()
@@ -61,3 +162,33 @@ D:
     test_non_image_rejected()
     test_unknown_statement_rejected()
     test_dry_run_compiles_call_without_model()
+  tests/test_native_lab.py:
+    e: NativeLabTests
+    NativeLabTests: test_required_families_are_covered(0),test_each_profile_has_evidence_and_probes(0),test_method_router_selects_route_for_key_intents(0),test_route_matrix_has_all_profiles_and_intents(0),test_known_profile_lookup(0)
+  tests/test_uri_runtime.py:
+    e: UriRuntimeTests
+    UriRuntimeTests: test_parse_and_match_uri(0),test_catalog_has_runtime_capabilities(0),test_call_find_and_type_and_verify(0),test_plan_runner_template_reference(0),test_function_binding(0)
+  tools/check_confidence_gate.py:
+    e: main
+    main()
+  tools/probe_native_host.py:
+    e: run_short,read_os_release,probe,main
+    run_short(cmd)
+    read_os_release()
+    probe()
+    main()
+  tools/probe_runtime.py:
+    e: call_step,run_probe,main
+    call_step(rt;step_id;uri;payload)
+    run_probe(profile)
+    main()
+  tools/run_backend_matrix.py:
+    e: to_markdown,main
+    to_markdown(matrix)
+    main()
+  tools/run_native_lab_matrix.py:
+    e: contract_check,build_matrix,confidence_gate,main
+    contract_check()
+    build_matrix()
+    confidence_gate(matrix)
+    main()

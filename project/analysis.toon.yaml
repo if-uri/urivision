@@ -1,48 +1,161 @@
-# code2llm | 16f 455L | python:8,txt:5,shell:2,toml:1 | 2026-07-05
-# generated in 0.00s
-# CC̅=4.4 | critical:1/15 | dups:0 | cycles:0
+# code2llm | 49f 19129L | python:24,shell:10,json:6,yaml:4,toml:1,txt:1,x11-novnc:1,yml:1 | 2026-07-05
+# generated in 0.02s
+# CC̅=4.2 | critical:3/90 | dups:0 | cycles:2
 
-HEALTH[1]:
+HEALTH[3]:
   🟡 CC    parse CC=19 (limit:15)
+  🟡 CC    probe CC=17 (limit:15)
+  🟡 CC    main CC=22 (limit:15)
 
-REFACTOR[1]:
-  1. split 1 high-CC methods  (CC>15)
+REFACTOR[2]:
+  1. split 3 high-CC methods  (CC>15)
+  2. break 2 circular dependencies
 
-PIPELINES[3]:
-  [1] Src [main]: main → run_file → run_source → validate → ...(1 more)
+PIPELINES[32]:
+  [1] Src [run]: run → model_id
       PURITY: 100% pure
-  [2] Src [run]: run → model_id
+  [2] Src [capability]: capability → schema_from_signature
       PURITY: 100% pure
-  [3] Src [run]: run → run_source → validate → _scheme
+  [3] Src [find]: find → match_uri → parse_uri
+      PURITY: 100% pure
+  [4] Src [call]: call → validate_payload → _json_type_ok
+      PURITY: 100% pure
+  [5] Src [catalog_json]: catalog_json
+      PURITY: 100% pure
+  [6] Src [catalog_markdown]: catalog_markdown
+      PURITY: 100% pure
+  [7] Src [catalog_prompt]: catalog_prompt
+      PURITY: 100% pure
+  [8] Src [pretty_json]: pretty_json
+      PURITY: 100% pure
+  [9] Src [main]: main → print
+      PURITY: 100% pure
+  [10] Src [main]: main → build_matrix → contract_check → default_runtime
+      PURITY: 100% pure
+  [11] Src [main]: main → print
+      PURITY: 100% pure
+  [12] Src [main]: main → probe → run_short
+      PURITY: 100% pure
+  [13] Src [run]: run → run_source → validate → _scheme
+      PURITY: 100% pure
+  [14] Src [main]: main → run_probe → default_runtime
+      PURITY: 100% pure
+  [15] Src [compile_runtime_prompt]: compile_runtime_prompt → default_runtime
+      PURITY: 100% pure
+  [16] Src [compile_runtime_tools]: compile_runtime_tools → default_runtime
+      PURITY: 100% pure
+  [17] Src [register_module_uri_functions]: register_module_uri_functions → register_uri_function
+      PURITY: 100% pure
+  [18] Src [__init__]: __init__ → default_runtime
+      PURITY: 100% pure
+  [19] Src [run]: run → _resolve_templates → _get_path
+      PURITY: 100% pure
+  [20] Src [add]: add → uri_function → schema_from_signature
+      PURITY: 100% pure
+  [21] Src [to_dict]: to_dict
+      PURITY: 100% pure
+  [22] Src [normalize_uri]: normalize_uri → parse_uri
+      PURITY: 100% pure
+  [23] Src [main]: main → default_runtime
+      PURITY: 100% pure
+  [24] Src [__init__]: __init__ → build_default_registry → register
+      PURITY: 100% pure
+  [25] Src [call]: call
+      PURITY: 100% pure
+  [26] Src [catalog]: catalog
+      PURITY: 100% pure
+  [27] Src [explain]: explain
+      PURITY: 100% pure
+  [28] Src [trace]: trace
+      PURITY: 100% pure
+  [29] Src [to_dict]: to_dict
+      PURITY: 100% pure
+  [30] Src [emit]: emit
+      PURITY: 100% pure
+  [31] Src [to_dict]: to_dict
+      PURITY: 100% pure
+  [32] Src [to_llm_card]: to_llm_card
       PURITY: 100% pure
 
 LAYERS:
-  src/                            CC̄=4.4    ←in:1  →out:2
+  tools/                          CC̄=5.3    ←in:0  →out:16  !! split
+  │ run_native_lab_matrix      117L  0C    4m  CC=8      ←0
+  │ !! probe_native_host          112L  0C    4m  CC=17     ←0
+  │ probe_runtime               92L  0C    3m  CC=9      ←1
+  │ run_backend_matrix          49L  0C    2m  CC=4      ←0
+  │ check_confidence_gate       29L  0C    1m  CC=9      ←0
+  │
+  src/                            CC̄=4.1    ←in:1  →out:2
+  │ !! runtime                    513L  1C   13m  CC=14     ←5
+  │ native_profiles            427L  1C    6m  CC=9      ←3
+  │ registry                   209L  3C   14m  CC=12     ←6
+  │ method_router              144L  1C    3m  CC=12     ←2
+  │ !! cli                        140L  0C    2m  CC=22     ←0
+  │ platforms                  138L  1C    3m  CC=5      ←1
+  │ uri                        100L  1C    4m  CC=7      ←1
+  │ schemas                     99L  0C    1m  CC=2      ←1
+  │ orchestrator                95L  2C    7m  CC=10     ←1
   │ !! dsl                         93L  3C    2m  CC=19     ←1
+  │ capability                  89L  2C    3m  CC=6      ←0
+  │ bindings                    68L  0C    3m  CC=4      ←1
   │ runner_litellm              54L  0C    2m  CC=4      ←0
-  │ schemas                     41L  0C    1m  CC=2      ←1
+  │ __init__                    47L  0C    3m  CC=1      ←1
   │ validators                  38L  1C    2m  CC=14     ←1
-  │ __init__                    33L  0C    3m  CC=1      ←1
-  │ cli                         28L  0C    1m  CC=5      ←0
   │ compiler                    28L  0C    1m  CC=4      ←1
   │ resolver                    27L  0C    3m  CC=6      ←2
-  │ SOURCES.txt                 17L  0C    0m  CC=0.0    ←0
-  │ requires.txt                 3L  0C    0m  CC=0.0    ←0
-  │ entry_points.txt             2L  0C    0m  CC=0.0    ←0
-  │ dependency_links.txt         1L  0C    0m  CC=0.0    ←0
-  │ top_level.txt                1L  0C    0m  CC=0.0    ←0
+  │ llm_catalog                 15L  0C    2m  CC=2      ←0
+  │
+  examples/                       CC̄=1.0    ←in:0  →out:1
+  │ desktop-control.plan.json    42L  0C    0m  CC=0.0    ←0
+  │ guarded-batch.plan.json     21L  0C    0m  CC=0.0    ←0
+  │ function_binding_example    18L  0C    1m  CC=1      ←0
+  │
+  native/                         CC̄=0.0    ←in:0  →out:0
+  │ probe_linux_display.sh      31L  0C    1m  CC=0.0    ←6
+  │ probe_ios.sh                22L  0C    0m  CC=0.0    ←0
+  │ probe_macos_ax.sh           20L  0C    0m  CC=0.0    ←0
+  │ runner-manifest.json        19L  0C    0m  CC=0.0    ←0
+  │ probe_android.sh            18L  0C    0m  CC=0.0    ←0
+  │ run_smoke.sh                 8L  0C    0m  CC=0.0    ←0
+  │ run_smoke.sh                 7L  0C    0m  CC=0.0    ←0
   │
   ./                              CC̄=0.0    ←in:0  →out:0
+  │ planfile.yaml              279L  0C    0m  CC=0.0    ←0
+  │ prefact.yaml                94L  0C    0m  CC=0.0    ←0
   │ project.sh                  66L  0C    0m  CC=0.0    ←0
+  │ Makefile                    31L  0C    0m  CC=0.0    ←0
   │ pyproject.toml              19L  0C    0m  CC=0.0    ←0
   │ tree.sh                      4L  0C    0m  CC=0.0    ←0
   │
+  artifacts/                      CC̄=0.0    ←in:0  →out:0
+  │ !! native-lab-matrix.json    9534L  0C    0m  CC=0.0    ←0
+  │ !! backend-matrix.json       5965L  0C    0m  CC=0.0    ←0
+  │ native-host-probe.json      73L  0C    0m  CC=0.0    ←0
+  │ docker-availability.txt      7L  0C    0m  CC=0.0    ←0
+  │
+  docker/                         CC̄=0.0    ←in:0  →out:0
+  │ docker-compose.yml          54L  0C    0m  CC=0.0    ←0
+  │ Dockerfile.x11-novnc        25L  0C    0m  CC=0.0    ←0
+  │ entrypoint-wayland.sh       10L  0C    0m  CC=0.0    ←0
+  │ entrypoint-x11-novnc.sh      9L  0C    0m  CC=0.0    ←0
+  │
+  testql-scenarios/               CC̄=0.0    ←in:0  →out:0
+  │ generated-cli-tests.testql.toon.yaml    20L  0C    0m  CC=0.0    ←0
+  │ generated-from-pytests.testql.toon.yaml    10L  0C    0m  CC=0.0    ←0
+  │
 
 COUPLING:
-                           src  src.urivision
-            src             ──              2
-  src.urivision              1             ──
-  CYCLES: none
+                 src.urivision   native.linux          tools            src       examples
+  src.urivision             ──             16            ←11              1             ←1  hub
+   native.linux            ←16             ──             ←5                                hub
+          tools             11              5             ──                                !! fan-out
+            src              2                                           ──               
+       examples              1                                                          ──
+  CYCLES: 2
+  HUB: src.urivision/ (fan-in=14)
+  HUB: native.linux/ (fan-in=21)
+  SMELL: tools/ fan-out=16 → split needed
+  SMELL: src.urivision/ fan-out=17 → split needed
 
 EXTERNAL:
   validation: run `vallm batch .` → validation.toon

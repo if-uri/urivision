@@ -1,3 +1,22 @@
 flowchart TD
 %% generated in 0.00s
-    src__urivision["src.urivision<br/>15 funcs"]
+    examples__function_binding_example["examples.function_binding_example<br/>1 funcs"]
+    native__linux["native.linux<br/>1 funcs"]
+    src__urivision["src.urivision<br/>74 funcs"]
+    tools__check_confidence_gate["tools.check_confidence_gate<br/>1 funcs"]
+    tools__probe_native_host["tools.probe_native_host<br/>4 funcs"]
+    tools__probe_runtime["tools.probe_runtime<br/>3 funcs"]
+    tools__run_backend_matrix["tools.run_backend_matrix<br/>2 funcs"]
+    tools__run_native_lab_matrix["tools.run_native_lab_matrix<br/>4 funcs"]
+    src__urivision ==>|16| native__linux
+    tools__run_native_lab_matrix ==>|7| src__urivision
+    tools__probe_runtime -->|2| src__urivision
+    tools__check_confidence_gate -->|1| native__linux
+    tools__check_confidence_gate -->|1| src__urivision
+    tools__run_native_lab_matrix -->|1| native__linux
+    tools__run_backend_matrix -->|1| native__linux
+    tools__run_backend_matrix -->|1| tools__probe_runtime
+    tools__run_backend_matrix -->|1| src__urivision
+    tools__probe_native_host -->|1| native__linux
+    tools__probe_runtime -->|1| native__linux
+    examples__function_binding_example -->|1| src__urivision

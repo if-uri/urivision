@@ -1,9 +1,42 @@
-# redup/duplication | 0 groups | 8f 342L | 2026-07-05
+# redup/duplication | 2 groups | 24f 2741L | 2026-07-05
 
 SUMMARY:
-  files_scanned: 8
-  total_lines:   342
-  dup_groups:    0
-  dup_fragments: 0
-  saved_lines:   0
-  scan_ms:       45
+  files_scanned: 24
+  total_lines:   2741
+  dup_groups:    2
+  dup_fragments: 5
+  saved_lines:   9
+  scan_ms:       847
+
+HOTSPOTS[2] (files with most duplication):
+  src/urivision/uri.py  dup=9L  groups=1  frags=3  (0.3%)
+  src/urivision/llm_catalog.py  dup=6L  groups=1  frags=2  (0.2%)
+
+DUPLICATES[2] (ranked by impact):
+  [F0002]   FUZZ  kind  L=3 N=3 saved=6 sim=0.87
+      src/urivision/uri.py:24-26  (kind)
+      src/urivision/uri.py:29-31  (name)
+      src/urivision/uri.py:34-36  (area)
+  [F0001]   FUZZ  compile_runtime_prompt  L=3 N=2 saved=3 sim=0.91
+      src/urivision/llm_catalog.py:8-10  (compile_runtime_prompt)
+      src/urivision/llm_catalog.py:13-15  (compile_runtime_tools)
+
+REFACTOR[2] (ranked by priority):
+  [1] ○ extract_class      → src/urivision/utils/kind.py
+      WHY: 3 occurrences of 3-line block across 1 files — saves 6 lines
+      FILES: src/urivision/uri.py
+  [2] ○ extract_function   → src/urivision/utils/compile_runtime_prompt.py
+      WHY: 2 occurrences of 3-line block across 1 files — saves 3 lines
+      FILES: src/urivision/llm_catalog.py
+
+QUICK_WINS[1] (low risk, high savings — do first):
+  [1] extract_class      saved=6L  → src/urivision/utils/kind.py
+      FILES: uri.py
+
+EFFORT_ESTIMATE (total ≈ 0.3h):
+  easy   kind                                saved=6L  ~12min
+  easy   compile_runtime_prompt              saved=3L  ~6min
+
+METRICS-TARGET:
+  dup_groups:  2 → 0
+  saved_lines: 9 lines recoverable

@@ -1,8 +1,104 @@
 source: code2llm
-# generated in 0.01s
+# generated in 0.02s
 schema: code2llm.planfile_tickets.v1
 project_root: /home/tom/github/if-uri/urivision
 tickets:
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: route_intent'
+  description: 'code2llm reports `God Function: route_intent` in `src/urivision/method_router.py:97`.
+
+
+    Function ''route_intent'' is oversized: CC=12, fan-out=15, mutations=19.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/urivision/method_router.py
+  dedupe_key: 'code2llm:smell:god_function:src/urivision/method_router.py:97:God Function:
+    route_intent'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: ap'
+  description: 'code2llm reports `Shotgun Surgery: ap` in `tools/probe_native_host.py:98`.
+
+
+    Mutation of variable ''ap'' spans 6 functions. Changing this logic requires work
+    in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - tools/probe_native_host.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:tools/probe_native_host.py:98:Shotgun
+    Surgery: ap'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: args'
+  description: 'code2llm reports `Shotgun Surgery: args` in `tools/probe_native_host.py:98`.
+
+
+    Mutation of variable ''args'' spans 7 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - tools/probe_native_host.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:tools/probe_native_host.py:98:Shotgun
+    Surgery: args'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: data'
+  description: 'code2llm reports `Shotgun Surgery: data` in `tools/probe_native_host.py:98`.
+
+
+    Mutation of variable ''data'' spans 6 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - tools/probe_native_host.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:tools/probe_native_host.py:98:Shotgun
+    Surgery: data'
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: src.urivision.cli.main (CC=22)'
+  description: 'code2llm reports `src.urivision.cli.main` at `src/urivision/cli.py:37`
+    with cyclomatic complexity 22 (limit 15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - src/urivision/cli.py
+  dedupe_key: code2llm:cc:src/urivision/cli.py:src.urivision.cli.main
 - signal: code2llm_cc
   title: 'Reduce cyclomatic complexity: src.urivision.dsl.parse (CC=19)'
   description: 'code2llm reports `src.urivision.dsl.parse` at `src/urivision/dsl.py:53`
@@ -20,6 +116,120 @@ tickets:
   files:
   - src/urivision/dsl.py
   dedupe_key: code2llm:cc:src/urivision/dsl.py:src.urivision.dsl.parse
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: tools.probe_native_host.probe (CC=17)'
+  description: 'code2llm reports `tools.probe_native_host.probe` at `tools/probe_native_host.py:47`
+    with cyclomatic complexity 17 (limit 15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - tools/probe_native_host.py
+  dedupe_key: code2llm:cc:tools/probe_native_host.py:tools.probe_native_host.probe
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: uri, payload, self'
+  description: 'code2llm reports `Data Clump: uri, payload, self` in `src/urivision/registry.py:112`.
+
+
+    Arguments (uri, payload, self) are used together in multiple functions: src.urivision.registry.CapabilityRegistry.call,
+    src.urivision.runtime.UriRuntime.call.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/urivision/registry.py
+  dedupe_key: 'code2llm:smell:data_clump:src/urivision/registry.py:112:Data Clump:
+    uri, payload, self'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: uri, payload, self'
+  description: 'code2llm reports `Data Clump: uri, payload, self` in `src/urivision/runtime.py:487`.
+
+
+    Arguments (uri, payload, self) are used together in multiple functions: src.urivision.registry.CapabilityRegistry.call,
+    src.urivision.runtime.UriRuntime.call.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/urivision/runtime.py
+  dedupe_key: 'code2llm:smell:data_clump:src/urivision/runtime.py:487:Data Clump:
+    uri, payload, self'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: _ensure_state'
+  description: 'code2llm reports `God Function: _ensure_state` in `src/urivision/runtime.py:50`.
+
+
+    Function ''_ensure_state'' is oversized: CC=1, fan-out=2, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/urivision/runtime.py
+  dedupe_key: 'code2llm:smell:god_function:src/urivision/runtime.py:50:God Function:
+    _ensure_state'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: _find_element'
+  description: 'code2llm reports `God Function: _find_element` in `src/urivision/runtime.py:67`.
+
+
+    Function ''_find_element'' is oversized: CC=14, fan-out=8, mutations=6.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/urivision/runtime.py
+  dedupe_key: 'code2llm:smell:god_function:src/urivision/runtime.py:67:God Function:
+    _find_element'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: _resolve_templates'
+  description: 'code2llm reports `God Function: _resolve_templates` in `src/urivision/orchestrator.py:37`.
+
+
+    Function ''_resolve_templates'' is oversized: CC=9, fan-out=8, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/urivision/orchestrator.py
+  dedupe_key: 'code2llm:smell:god_function:src/urivision/orchestrator.py:37:God Function:
+    _resolve_templates'
 - signal: code2llm_smell_god_function
   title: 'Address code smell: God Function: artifact_path'
   description: 'code2llm reports `God Function: artifact_path` in `src/urivision/resolver.py:16`.
@@ -40,11 +250,11 @@ tickets:
   dedupe_key: 'code2llm:smell:god_function:src/urivision/resolver.py:16:God Function:
     artifact_path'
 - signal: code2llm_smell_god_function
-  title: 'Address code smell: God Function: main'
-  description: 'code2llm reports `God Function: main` in `src/urivision/cli.py:12`.
+  title: 'Address code smell: God Function: build_default_registry'
+  description: 'code2llm reports `God Function: build_default_registry` in `src/urivision/runtime.py:89`.
 
 
-    Function ''main'' is oversized: CC=5, fan-out=11, mutations=11.
+    Function ''build_default_registry'' is oversized: CC=1, fan-out=39, mutations=1.
 
 
     Make the smallest refactor that removes the smell and run local tests.'
@@ -55,8 +265,142 @@ tickets:
   - code-smell
   - god-function
   files:
-  - src/urivision/cli.py
-  dedupe_key: 'code2llm:smell:god_function:src/urivision/cli.py:12:God Function: main'
+  - src/urivision/runtime.py
+  dedupe_key: 'code2llm:smell:god_function:src/urivision/runtime.py:89:God Function:
+    build_default_registry'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: build_matrix'
+  description: 'code2llm reports `God Function: build_matrix` in `tools/run_native_lab_matrix.py:29`.
+
+
+    Function ''build_matrix'' is oversized: CC=8, fan-out=12, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - tools/run_native_lab_matrix.py
+  dedupe_key: 'code2llm:smell:god_function:tools/run_native_lab_matrix.py:29:God Function:
+    build_matrix'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: detect_local_host'
+  description: 'code2llm reports `God Function: detect_local_host` in `src/urivision/native_profiles.py:367`.
+
+
+    Function ''detect_local_host'' is oversized: CC=9, fan-out=6, mutations=11.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/urivision/native_profiles.py
+  dedupe_key: 'code2llm:smell:god_function:src/urivision/native_profiles.py:367:God
+    Function: detect_local_host'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `tools/check_confidence_gate.py:10`.
+
+
+    Function ''main'' is oversized: CC=9, fan-out=9, mutations=8.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - tools/check_confidence_gate.py
+  dedupe_key: 'code2llm:smell:god_function:tools/check_confidence_gate.py:10:God Function:
+    main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `tools/run_native_lab_matrix.py:100`.
+
+
+    Function ''main'' is oversized: CC=1, fan-out=12, mutations=6.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - tools/run_native_lab_matrix.py
+  dedupe_key: 'code2llm:smell:god_function:tools/run_native_lab_matrix.py:100:God
+    Function: main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `tools/run_backend_matrix.py:28`.
+
+
+    Function ''main'' is oversized: CC=4, fan-out=14, mutations=9.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - tools/run_backend_matrix.py
+  dedupe_key: 'code2llm:smell:god_function:tools/run_backend_matrix.py:28:God Function:
+    main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `tools/probe_runtime.py:76`.
+
+
+    Function ''main'' is oversized: CC=3, fan-out=11, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - tools/probe_runtime.py
+  dedupe_key: 'code2llm:smell:god_function:tools/probe_runtime.py:76:God Function:
+    main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: read_os_release'
+  description: 'code2llm reports `God Function: read_os_release` in `tools/probe_native_host.py:35`.
+
+
+    Function ''read_os_release'' is oversized: CC=4, fan-out=7, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - tools/probe_native_host.py
+  dedupe_key: 'code2llm:smell:god_function:tools/probe_native_host.py:35:God Function:
+    read_os_release'
 - signal: code2llm_smell_god_function
   title: 'Address code smell: God Function: run'
   description: 'code2llm reports `God Function: run` in `src/urivision/runner_litellm.py:20`.
@@ -77,6 +421,82 @@ tickets:
   dedupe_key: 'code2llm:smell:god_function:src/urivision/runner_litellm.py:20:God
     Function: run'
 - signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: run'
+  description: 'code2llm reports `God Function: run` in `src/urivision/orchestrator.py:69`.
+
+
+    Function ''run'' is oversized: CC=10, fan-out=11, mutations=0.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/urivision/orchestrator.py
+  dedupe_key: 'code2llm:smell:god_function:src/urivision/orchestrator.py:69:God Function:
+    run'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: run_probe'
+  description: 'code2llm reports `God Function: run_probe` in `tools/probe_runtime.py:35`.
+
+
+    Function ''run_probe'' is oversized: CC=9, fan-out=10, mutations=21.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - tools/probe_runtime.py
+  dedupe_key: 'code2llm:smell:god_function:tools/probe_runtime.py:35:God Function:
+    run_probe'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: schema_from_signature'
+  description: 'code2llm reports `God Function: schema_from_signature` in `src/urivision/registry.py:175`.
+
+
+    Function ''schema_from_signature'' is oversized: CC=10, fan-out=3, mutations=11.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/urivision/registry.py
+  dedupe_key: 'code2llm:smell:god_function:src/urivision/registry.py:175:God Function:
+    schema_from_signature'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: to_markdown'
+  description: 'code2llm reports `God Function: to_markdown` in `tools/run_backend_matrix.py:13`.
+
+
+    Function ''to_markdown'' is oversized: CC=4, fan-out=4, mutations=8.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - tools/run_backend_matrix.py
+  dedupe_key: 'code2llm:smell:god_function:tools/run_backend_matrix.py:13:God Function:
+    to_markdown'
+- signal: code2llm_smell_god_function
   title: 'Address code smell: God Function: validate'
   description: 'code2llm reports `God Function: validate` in `src/urivision/validators.py:19`.
 
@@ -95,5 +515,24 @@ tickets:
   - src/urivision/validators.py
   dedupe_key: 'code2llm:smell:god_function:src/urivision/validators.py:19:God Function:
     validate'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: validate_payload'
+  description: 'code2llm reports `God Function: validate_payload` in `src/urivision/registry.py:41`.
+
+
+    Function ''validate_payload'' is oversized: CC=12, fan-out=10, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/urivision/registry.py
+  dedupe_key: 'code2llm:smell:god_function:src/urivision/registry.py:41:God Function:
+    validate_payload'
 applied: []
 skipped: []

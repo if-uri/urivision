@@ -2,6 +2,7 @@
 name = "urivision"
 version = "0.3.0"
 description = "VURI — Visual URI Process Language plus URI-addressable runtime, Docker contracts and native OS test lab."
+readme = "README.md"
 requires-python = ">=3.10"
 dependencies = []                    # rdzeń bez zależności; runner wymaga: pip install 'urivision[litellm]'
 

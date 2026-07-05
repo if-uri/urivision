@@ -1,52 +1,52 @@
 project: /home/tom/github/if-uri/urivision
 generated_from: code2llm call graph analysis
 stats:
-  total_nodes: 13
-  total_edges: 11
-  modules_count: 8
+  total_nodes: 60
+  total_edges: 52
+  modules_count: 21
 nodes:
-  src.urivision.resolver.label:
-    name: label
-    module: src.urivision.resolver
-    line: 25
-    cyclomatic_complexity: 2
-    calls_out: 1
-    calls_in: 3
-  src.urivision.resolver.artifact_path:
-    name: artifact_path
-    module: src.urivision.resolver
-    line: 16
-    cyclomatic_complexity: 6
+  src.urivision.registry.CapabilityRegistry.find:
+    name: find
+    module: src.urivision.registry
+    line: 105
+    cyclomatic_complexity: 3
+    calls_out: 2
+    calls_in: 0
+  src.urivision.runtime._ensure_state:
+    name: _ensure_state
+    module: src.urivision.runtime
+    line: 50
+    cyclomatic_complexity: 1
     calls_out: 8
-    calls_in: 2
-  src.urivision.compiler.compile_prompt:
-    name: compile_prompt
-    module: src.urivision.compiler
-    line: 15
-    cyclomatic_complexity: 4
-    calls_out: 6
+    calls_in: 13
+  src.urivision.uri.match_uri:
+    name: match_uri
+    module: src.urivision.uri
+    line: 77
+    cyclomatic_complexity: 6
+    calls_out: 7
     calls_in: 1
-  src.urivision.validators._scheme:
-    name: _scheme
-    module: src.urivision.validators
-    line: 15
-    cyclomatic_complexity: 2
+  src.urivision.registry.CapabilityRegistry.all:
+    name: all
+    module: src.urivision.registry
+    line: 130
+    cyclomatic_complexity: 1
     calls_out: 1
-    calls_in: 1
-  src.urivision.resolver.model_id:
-    name: model_id
-    module: src.urivision.resolver
-    line: 11
-    cyclomatic_complexity: 1
-    calls_out: 0
-    calls_in: 1
-  src.urivision.run_source:
-    name: run_source
-    module: src.urivision
-    line: 22
-    cyclomatic_complexity: 1
+    calls_in: 6
+  src.urivision.runtime._walk:
+    name: _walk
+    module: src.urivision.runtime
+    line: 60
+    cyclomatic_complexity: 3
     calls_out: 3
-    calls_in: 2
+    calls_in: 3
+  src.urivision.registry.CapabilityRegistry.call:
+    name: call
+    module: src.urivision.registry
+    line: 112
+    cyclomatic_complexity: 6
+    calls_out: 9
+    calls_in: 0
   src.urivision.dsl.parse:
     name: parse
     module: src.urivision.dsl
@@ -54,12 +54,299 @@ nodes:
     cyclomatic_complexity: 19
     calls_out: 35
     calls_in: 1
-  src.urivision.schemas.resolve_schema:
-    name: resolve_schema
-    module: src.urivision.schemas
-    line: 38
+  src.urivision.native_profiles.list_native_targets:
+    name: list_native_targets
+    module: src.urivision.native_profiles
+    line: 342
     cyclomatic_complexity: 2
     calls_out: 1
+    calls_in: 5
+  tools.probe_native_host.probe:
+    name: probe
+    module: tools.probe_native_host
+    line: 47
+    cyclomatic_complexity: 17
+    calls_out: 31
+    calls_in: 1
+  src.urivision.bindings.register_module_uri_functions:
+    name: register_module_uri_functions
+    module: src.urivision.bindings
+    line: 63
+    cyclomatic_complexity: 4
+    calls_out: 6
+    calls_in: 0
+  tools.probe_native_host.run_short:
+    name: run_short
+    module: tools.probe_native_host
+    line: 27
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 10
+  src.urivision.orchestrator._resolve_templates:
+    name: _resolve_templates
+    module: src.urivision.orchestrator
+    line: 37
+    cyclomatic_complexity: 9
+    calls_out: 11
+    calls_in: 3
+  src.urivision.registry.schema_from_signature:
+    name: schema_from_signature
+    module: src.urivision.registry
+    line: 175
+    cyclomatic_complexity: 10
+    calls_out: 3
+    calls_in: 2
+  src.urivision.validators.validate:
+    name: validate
+    module: src.urivision.validators
+    line: 19
+    cyclomatic_complexity: 14
+    calls_out: 10
+    calls_in: 1
+  src.urivision.orchestrator._get_path:
+    name: _get_path
+    module: src.urivision.orchestrator
+    line: 23
+    cyclomatic_complexity: 5
+    calls_out: 5
+    calls_in: 1
+  src.urivision.runtime.build_default_registry:
+    name: build_default_registry
+    module: src.urivision.runtime
+    line: 89
+    cyclomatic_complexity: 1
+    calls_out: 187
+    calls_in: 1
+  src.urivision.run_source:
+    name: run_source
+    module: src.urivision
+    line: 36
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 2
+  src.urivision.native_profiles.get_native_target:
+    name: get_native_target
+    module: src.urivision.native_profiles
+    line: 346
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 1
+  src.urivision.orchestrator.run_plan:
+    name: run_plan
+    module: src.urivision.orchestrator
+    line: 90
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 1
+  src.urivision.orchestrator.PlanRunner.__init__:
+    name: __init__
+    module: src.urivision.orchestrator
+    line: 66
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 0
+  native.linux.probe_linux_display.print:
+    name: print
+    module: native.linux.probe_linux_display
+    line: 22
+    cyclomatic_complexity: 0
+    calls_out: 0
+    calls_in: 21
+  src.urivision.compiler.compile_prompt:
+    name: compile_prompt
+    module: src.urivision.compiler
+    line: 15
+    cyclomatic_complexity: 4
+    calls_out: 6
+    calls_in: 1
+  src.urivision.run_file:
+    name: run_file
+    module: src.urivision
+    line: 41
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 1
+  src.urivision.orchestrator.PlanRunner.run:
+    name: run
+    module: src.urivision.orchestrator
+    line: 69
+    cyclomatic_complexity: 10
+    calls_out: 17
+    calls_in: 0
+  tools.probe_runtime.run_probe:
+    name: run_probe
+    module: tools.probe_runtime
+    line: 35
+    cyclomatic_complexity: 9
+    calls_out: 39
+    calls_in: 2
+  src.urivision.orchestrator.run_plan_file:
+    name: run_plan_file
+    module: src.urivision.orchestrator
+    line: 94
+    cyclomatic_complexity: 1
+    calls_out: 4
+    calls_in: 1
+  src.urivision.uri.normalize_uri:
+    name: normalize_uri
+    module: src.urivision.uri
+    line: 56
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 0
+  src.urivision.runtime._default_tree:
+    name: _default_tree
+    module: src.urivision.runtime
+    line: 29
+    cyclomatic_complexity: 1
+    calls_out: 0
+    calls_in: 1
+  tools.probe_native_host.main:
+    name: main
+    module: tools.probe_native_host
+    line: 98
+    cyclomatic_complexity: 2
+    calls_out: 10
+    calls_in: 0
+  src.urivision.registry.validate_payload:
+    name: validate_payload
+    module: src.urivision.registry
+    line: 41
+    cyclomatic_complexity: 12
+    calls_out: 18
+    calls_in: 1
+  src.urivision.registry.CapabilityRegistry.register:
+    name: register
+    module: src.urivision.registry
+    line: 70
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 18
+  tools.run_native_lab_matrix.main:
+    name: main
+    module: tools.run_native_lab_matrix
+    line: 100
+    cyclomatic_complexity: 1
+    calls_out: 20
+    calls_in: 0
+  src.urivision.orchestrator._check_expectation:
+    name: _check_expectation
+    module: src.urivision.orchestrator
+    line: 51
+    cyclomatic_complexity: 8
+    calls_out: 12
+    calls_in: 1
+  src.urivision.resolver.label:
+    name: label
+    module: src.urivision.resolver
+    line: 25
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 3
+  src.urivision.bindings.uri_function:
+    name: uri_function
+    module: src.urivision.bindings
+    line: 12
+    cyclomatic_complexity: 1
+    calls_out: 5
+    calls_in: 1
+  tools.check_confidence_gate.main:
+    name: main
+    module: tools.check_confidence_gate
+    line: 10
+    cyclomatic_complexity: 9
+    calls_out: 10
+    calls_in: 0
+  src.urivision.runtime.default_runtime:
+    name: default_runtime
+    module: src.urivision.runtime
+    line: 512
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 6
+  tools.run_native_lab_matrix.build_matrix:
+    name: build_matrix
+    module: tools.run_native_lab_matrix
+    line: 29
+    cyclomatic_complexity: 8
+    calls_out: 12
+    calls_in: 1
+  src.urivision.llm_catalog.compile_runtime_prompt:
+    name: compile_runtime_prompt
+    module: src.urivision.llm_catalog
+    line: 8
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 0
+  src.urivision.llm_catalog.compile_runtime_tools:
+    name: compile_runtime_tools
+    module: src.urivision.llm_catalog
+    line: 13
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 0
+  src.urivision.bindings.register_uri_function:
+    name: register_uri_function
+    module: src.urivision.bindings
+    line: 45
+    cyclomatic_complexity: 2
+    calls_out: 9
+    calls_in: 1
+  examples.function_binding_example.add:
+    name: add
+    module: examples.function_binding_example
+    line: 10
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  src.urivision.native_profiles.native_matrix_markdown:
+    name: native_matrix_markdown
+    module: src.urivision.native_profiles
+    line: 395
+    cyclomatic_complexity: 4
+    calls_out: 11
+    calls_in: 2
+  src.urivision.run:
+    name: run
+    module: src.urivision
+    line: 46
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  src.urivision.method_router.route_matrix:
+    name: route_matrix
+    module: src.urivision.method_router
+    line: 134
+    cyclomatic_complexity: 3
+    calls_out: 5
+    calls_in: 1
+  src.urivision.runtime._find_element:
+    name: _find_element
+    module: src.urivision.runtime
+    line: 67
+    cyclomatic_complexity: 14
+    calls_out: 24
+    calls_in: 3
+  tools.probe_runtime.main:
+    name: main
+    module: tools.probe_runtime
+    line: 76
+    cyclomatic_complexity: 3
+    calls_out: 12
+    calls_in: 0
+  src.urivision.validators._scheme:
+    name: _scheme
+    module: src.urivision.validators
+    line: 15
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 1
+  tools.probe_native_host.read_os_release:
+    name: read_os_release
+    module: tools.probe_native_host
+    line: 35
+    cyclomatic_complexity: 4
+    calls_out: 7
     calls_in: 1
   src.urivision.runner_litellm.run:
     name: run
@@ -68,38 +355,77 @@ nodes:
     cyclomatic_complexity: 4
     calls_out: 17
     calls_in: 0
-  src.urivision.validators.validate:
-    name: validate
-    module: src.urivision.validators
-    line: 19
-    cyclomatic_complexity: 14
+  src.urivision.resolver.artifact_path:
+    name: artifact_path
+    module: src.urivision.resolver
+    line: 16
+    cyclomatic_complexity: 6
+    calls_out: 8
+    calls_in: 2
+  src.urivision.schemas.resolve_schema:
+    name: resolve_schema
+    module: src.urivision.schemas
+    line: 96
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 1
+  src.urivision.uri.parse_uri:
+    name: parse_uri
+    module: src.urivision.uri
+    line: 39
+    cyclomatic_complexity: 7
+    calls_out: 9
+    calls_in: 3
+  src.urivision.runtime.UriRuntime.__init__:
+    name: __init__
+    module: src.urivision.runtime
+    line: 483
+    cyclomatic_complexity: 3
+    calls_out: 2
+    calls_in: 0
+  tools.run_native_lab_matrix.contract_check:
+    name: contract_check
+    module: tools.run_native_lab_matrix
+    line: 17
+    cyclomatic_complexity: 4
     calls_out: 10
     calls_in: 1
-  src.urivision.run:
-    name: run
-    module: src.urivision
-    line: 32
+  src.urivision.resolver.model_id:
+    name: model_id
+    module: src.urivision.resolver
+    line: 11
     cyclomatic_complexity: 1
-    calls_out: 1
-    calls_in: 0
-  src.urivision.run_file:
-    name: run_file
-    module: src.urivision
-    line: 27
+    calls_out: 0
+    calls_in: 1
+  src.urivision.registry.CapabilityRegistry.capability:
+    name: capability
+    module: src.urivision.registry
+    line: 77
     cyclomatic_complexity: 1
     calls_out: 3
-    calls_in: 1
-  src.urivision.cli.main:
-    name: main
-    module: src.urivision.cli
-    line: 12
-    cyclomatic_complexity: 5
-    calls_out: 13
     calls_in: 0
+  src.urivision.uri._match_segment:
+    name: _match_segment
+    module: src.urivision.uri
+    line: 62
+    cyclomatic_complexity: 7
+    calls_out: 4
+    calls_in: 2
+  src.urivision.native_profiles.coverage_summary:
+    name: coverage_summary
+    module: src.urivision.native_profiles
+    line: 354
+    cyclomatic_complexity: 9
+    calls_out: 6
+    calls_in: 3
+  src.urivision.method_router.route_intent:
+    name: route_intent
+    module: src.urivision.method_router
+    line: 97
+    cyclomatic_complexity: 12
+    calls_out: 18
+    calls_in: 3
 edges:
-- caller: src.urivision.cli.main
-  callee: src.urivision.run_file
-  call_type: resolved
 - caller: src.urivision.runner_litellm.run
   callee: src.urivision.resolver.model_id
   call_type: resolved
@@ -111,6 +437,57 @@ edges:
   call_type: resolved
 - caller: src.urivision.runner_litellm.run
   callee: src.urivision.resolver.artifact_path
+  call_type: resolved
+- caller: src.urivision.compiler.compile_prompt
+  callee: src.urivision.resolver.label
+  call_type: resolved
+- caller: src.urivision.registry.CapabilityRegistry.capability
+  callee: src.urivision.registry.schema_from_signature
+  call_type: resolved
+- caller: src.urivision.registry.CapabilityRegistry.find
+  callee: src.urivision.uri.match_uri
+  call_type: resolved
+- caller: src.urivision.registry.CapabilityRegistry.call
+  callee: src.urivision.registry.validate_payload
+  call_type: resolved
+- caller: tools.check_confidence_gate.main
+  callee: native.linux.probe_linux_display.print
+  call_type: resolved
+- caller: tools.check_confidence_gate.main
+  callee: src.urivision.registry.CapabilityRegistry.all
+  call_type: resolved
+- caller: tools.run_native_lab_matrix.contract_check
+  callee: src.urivision.runtime.default_runtime
+  call_type: resolved
+- caller: tools.run_native_lab_matrix.contract_check
+  callee: src.urivision.registry.CapabilityRegistry.all
+  call_type: resolved
+- caller: tools.run_native_lab_matrix.build_matrix
+  callee: tools.run_native_lab_matrix.contract_check
+  call_type: resolved
+- caller: tools.run_native_lab_matrix.build_matrix
+  callee: src.urivision.native_profiles.list_native_targets
+  call_type: resolved
+- caller: tools.run_native_lab_matrix.build_matrix
+  callee: src.urivision.native_profiles.coverage_summary
+  call_type: resolved
+- caller: tools.run_native_lab_matrix.build_matrix
+  callee: src.urivision.method_router.route_intent
+  call_type: resolved
+- caller: tools.run_native_lab_matrix.main
+  callee: tools.run_native_lab_matrix.build_matrix
+  call_type: resolved
+- caller: tools.probe_native_host.probe
+  callee: tools.probe_native_host.run_short
+  call_type: resolved
+- caller: tools.probe_native_host.probe
+  callee: tools.probe_native_host.read_os_release
+  call_type: resolved
+- caller: tools.probe_native_host.main
+  callee: tools.probe_native_host.probe
+  call_type: resolved
+- caller: tools.probe_native_host.main
+  callee: native.linux.probe_linux_display.print
   call_type: resolved
 - caller: src.urivision.run_source
   callee: src.urivision.validators.validate
@@ -127,32 +504,199 @@ edges:
 - caller: src.urivision.validators.validate
   callee: src.urivision.validators._scheme
   call_type: resolved
-- caller: src.urivision.compiler.compile_prompt
-  callee: src.urivision.resolver.label
+- caller: tools.probe_runtime.run_probe
+  callee: src.urivision.runtime.default_runtime
+  call_type: resolved
+- caller: tools.probe_runtime.main
+  callee: tools.probe_runtime.run_probe
+  call_type: resolved
+- caller: tools.probe_runtime.main
+  callee: native.linux.probe_linux_display.print
+  call_type: resolved
+- caller: src.urivision.llm_catalog.compile_runtime_prompt
+  callee: src.urivision.runtime.default_runtime
+  call_type: resolved
+- caller: src.urivision.llm_catalog.compile_runtime_tools
+  callee: src.urivision.runtime.default_runtime
+  call_type: resolved
+- caller: src.urivision.bindings.uri_function
+  callee: src.urivision.registry.schema_from_signature
+  call_type: resolved
+- caller: src.urivision.bindings.register_module_uri_functions
+  callee: src.urivision.bindings.register_uri_function
+  call_type: resolved
+- caller: src.urivision.orchestrator._resolve_templates
+  callee: src.urivision.orchestrator._get_path
+  call_type: resolved
+- caller: src.urivision.orchestrator.PlanRunner.__init__
+  callee: src.urivision.runtime.default_runtime
+  call_type: resolved
+- caller: src.urivision.orchestrator.PlanRunner.run
+  callee: src.urivision.orchestrator._resolve_templates
+  call_type: resolved
+- caller: src.urivision.orchestrator.PlanRunner.run
+  callee: src.urivision.orchestrator._check_expectation
+  call_type: resolved
+- caller: src.urivision.orchestrator.run_plan_file
+  callee: src.urivision.orchestrator.run_plan
+  call_type: resolved
+- caller: examples.function_binding_example.add
+  callee: src.urivision.bindings.uri_function
+  call_type: resolved
+- caller: src.urivision.native_profiles.coverage_summary
+  callee: src.urivision.native_profiles.list_native_targets
+  call_type: resolved
+- caller: src.urivision.native_profiles.native_matrix_markdown
+  callee: src.urivision.native_profiles.coverage_summary
+  call_type: resolved
+- caller: src.urivision.native_profiles.native_matrix_markdown
+  callee: src.urivision.native_profiles.list_native_targets
+  call_type: resolved
+- caller: src.urivision.uri.normalize_uri
+  callee: src.urivision.uri.parse_uri
+  call_type: resolved
+- caller: src.urivision.uri.match_uri
+  callee: src.urivision.uri.parse_uri
+  call_type: resolved
+- caller: src.urivision.uri.match_uri
+  callee: src.urivision.uri._match_segment
+  call_type: resolved
+- caller: src.urivision.runtime._ensure_state
+  callee: src.urivision.runtime._default_tree
+  call_type: resolved
+- caller: src.urivision.runtime._find_element
+  callee: src.urivision.runtime._walk
+  call_type: resolved
+- caller: src.urivision.runtime.build_default_registry
+  callee: src.urivision.registry.CapabilityRegistry.register
+  call_type: resolved
+- caller: src.urivision.runtime.UriRuntime.__init__
+  callee: src.urivision.runtime.build_default_registry
+  call_type: resolved
+- caller: src.urivision.method_router.route_intent
+  callee: src.urivision.native_profiles.get_native_target
+  call_type: resolved
+- caller: src.urivision.method_router.route_matrix
+  callee: src.urivision.native_profiles.list_native_targets
+  call_type: resolved
+- caller: src.urivision.method_router.route_matrix
+  callee: src.urivision.method_router.route_intent
   call_type: resolved
 modules:
+  examples.function_binding_example:
+  - examples.function_binding_example.add
+  native.linux.probe_linux_display:
+  - native.linux.probe_linux_display.print
   src.urivision:
   - src.urivision.run
   - src.urivision.run_file
   - src.urivision.run_source
-  src.urivision.cli:
-  - src.urivision.cli.main
+  src.urivision.bindings:
+  - src.urivision.bindings.register_module_uri_functions
+  - src.urivision.bindings.register_uri_function
+  - src.urivision.bindings.uri_function
   src.urivision.compiler:
   - src.urivision.compiler.compile_prompt
   src.urivision.dsl:
   - src.urivision.dsl.parse
+  src.urivision.llm_catalog:
+  - src.urivision.llm_catalog.compile_runtime_prompt
+  - src.urivision.llm_catalog.compile_runtime_tools
+  src.urivision.method_router:
+  - src.urivision.method_router.route_intent
+  - src.urivision.method_router.route_matrix
+  src.urivision.native_profiles:
+  - src.urivision.native_profiles.coverage_summary
+  - src.urivision.native_profiles.get_native_target
+  - src.urivision.native_profiles.list_native_targets
+  - src.urivision.native_profiles.native_matrix_markdown
+  src.urivision.orchestrator:
+  - src.urivision.orchestrator.PlanRunner.__init__
+  - src.urivision.orchestrator.PlanRunner.run
+  - src.urivision.orchestrator._check_expectation
+  - src.urivision.orchestrator._get_path
+  - src.urivision.orchestrator._resolve_templates
+  - src.urivision.orchestrator.run_plan
+  - src.urivision.orchestrator.run_plan_file
+  src.urivision.registry:
+  - src.urivision.registry.CapabilityRegistry.all
+  - src.urivision.registry.CapabilityRegistry.call
+  - src.urivision.registry.CapabilityRegistry.capability
+  - src.urivision.registry.CapabilityRegistry.find
+  - src.urivision.registry.CapabilityRegistry.register
+  - src.urivision.registry.schema_from_signature
+  - src.urivision.registry.validate_payload
   src.urivision.resolver:
   - src.urivision.resolver.artifact_path
   - src.urivision.resolver.label
   - src.urivision.resolver.model_id
   src.urivision.runner_litellm:
   - src.urivision.runner_litellm.run
+  src.urivision.runtime:
+  - src.urivision.runtime.UriRuntime.__init__
+  - src.urivision.runtime._default_tree
+  - src.urivision.runtime._ensure_state
+  - src.urivision.runtime._find_element
+  - src.urivision.runtime._walk
+  - src.urivision.runtime.build_default_registry
+  - src.urivision.runtime.default_runtime
   src.urivision.schemas:
   - src.urivision.schemas.resolve_schema
+  src.urivision.uri:
+  - src.urivision.uri._match_segment
+  - src.urivision.uri.match_uri
+  - src.urivision.uri.normalize_uri
+  - src.urivision.uri.parse_uri
   src.urivision.validators:
   - src.urivision.validators._scheme
   - src.urivision.validators.validate
+  tools.check_confidence_gate:
+  - tools.check_confidence_gate.main
+  tools.probe_native_host:
+  - tools.probe_native_host.main
+  - tools.probe_native_host.probe
+  - tools.probe_native_host.read_os_release
+  - tools.probe_native_host.run_short
+  tools.probe_runtime:
+  - tools.probe_runtime.main
+  - tools.probe_runtime.run_probe
+  tools.run_native_lab_matrix:
+  - tools.run_native_lab_matrix.build_matrix
+  - tools.run_native_lab_matrix.contract_check
+  - tools.run_native_lab_matrix.main
 entry_points:
+- examples.function_binding_example.add
+- src.urivision.bindings.register_module_uri_functions
+- src.urivision.capability.Capability.to_dict
+- src.urivision.capability.Capability.to_llm_card
+- src.urivision.capability.RuntimeContext.emit
 - src.urivision.cli.main
+- src.urivision.llm_catalog.compile_runtime_prompt
+- src.urivision.llm_catalog.compile_runtime_tools
+- src.urivision.method_router.RouteDecision.to_dict
+- src.urivision.native_profiles.NativeTargetProfile.to_dict
+- src.urivision.orchestrator.PlanRunner.__init__
+- src.urivision.orchestrator.PlanRunner.run
+- src.urivision.platforms.BackendProfile.to_dict
+- src.urivision.registry.CapabilityRegistry.__init__
+- src.urivision.registry.CapabilityRegistry.call
+- src.urivision.registry.CapabilityRegistry.capability
+- src.urivision.registry.CapabilityRegistry.catalog_json
+- src.urivision.registry.CapabilityRegistry.catalog_markdown
+- src.urivision.registry.CapabilityRegistry.catalog_prompt
+- src.urivision.registry.CapabilityRegistry.find
+- src.urivision.registry.CapabilityRegistry.tools_json
+- src.urivision.registry.pretty_json
 - src.urivision.run
 - src.urivision.runner_litellm.run
+- src.urivision.runtime.UriRuntime.__init__
+- src.urivision.runtime.UriRuntime.call
+- src.urivision.runtime.UriRuntime.catalog
+- src.urivision.runtime.UriRuntime.explain
+- src.urivision.runtime.UriRuntime.trace
+- src.urivision.uri.normalize_uri
+- tools.check_confidence_gate.main
+- tools.probe_native_host.main
+- tools.probe_runtime.main
+- tools.run_backend_matrix.main
+- tools.run_native_lab_matrix.main

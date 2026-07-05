@@ -2,7 +2,7 @@
 
 app {
   name: urivision;
-  version: 0.1.0;
+  version: 0.3.0;
 }
 
 dependencies {
@@ -16,11 +16,74 @@ interface[type="cli"] page[name="urivision"] {
   entry: urivision.cli:main;
 }
 
+integration[name="github"] {
+  type: scm;
+}
+
+workflow[name="test"] {
+  trigger: manual;
+  step-1: run cmd=PYTHONPATH=src:. python3 -m unittest discover -s tests -v;
+}
+
+workflow[name="matrix"] {
+  trigger: manual;
+  step-1: run cmd=PYTHONPATH=src:. python3 tools/run_backend_matrix.py --out artifacts/backend-matrix.json --markdown artifacts/backend-matrix.md;
+}
+
+workflow[name="native-matrix"] {
+  trigger: manual;
+  step-1: run cmd=PYTHONPATH=src:. python3 tools/run_native_lab_matrix.py --out artifacts/native-lab-matrix.json --markdown artifacts/native-lab-matrix.md --confidence artifacts/native-confidence-gate.md;
+}
+
+workflow[name="native-probe"] {
+  trigger: manual;
+  step-1: run cmd=PYTHONPATH=src:. python3 tools/probe_native_host.py --out artifacts/native-host-probe.json;
+}
+
+workflow[name="confidence"] {
+  trigger: manual;
+  step-1: run cmd=PYTHONPATH=src:. python3 tools/check_confidence_gate.py artifacts/native-lab-matrix.json;
+}
+
+workflow[name="docker-matrix"] {
+  trigger: manual;
+  step-1: run cmd=docker compose -f docker/docker-compose.yml run --rm uri-runtime-matrix;
+}
+
+workflow[name="docker-linux-x11"] {
+  trigger: manual;
+  step-1: run cmd=docker compose -f docker/docker-compose.yml --profile linux-x11 up --build --abort-on-container-exit;
+}
+
+workflow[name="docker-wayland"] {
+  trigger: manual;
+  step-1: run cmd=docker compose -f docker/docker-compose.yml --profile linux-wayland up --build --abort-on-container-exit;
+}
+
+workflow[name="docker-contract"] {
+  trigger: manual;
+  step-1: run cmd=docker compose -f docker/docker-compose.yml --profile contract up --build --abort-on-container-exit;
+}
+
+workflow[name="zip"] {
+  trigger: manual;
+  step-1: run cmd=cd .. && zip -qr urivision_native_test_lab.zip urivision -x 'urivision/venv/*' -x 'urivision/.git/*';
+}
+
+tests {
+  import: testql-scenarios/**/*.testql.toon.yaml;
+}
+
+env_vars {
+  keys: XDG_SESSION_TYPE, DISPLAY, WAYLAND_DISPLAY, CI, GITHUB_ACTIONS, URIVISION_BACKEND_PROFILE, URIVISION_PROFILE;
+}
+
 deploy {
-  target: pip;
+  target: docker-compose;
+  compose_file: docker/docker-compose.yml;
 }
 
 environment[name="local"] {
-  runtime: python;
+  runtime: docker-compose;
   python_version: >=3.10;
 }

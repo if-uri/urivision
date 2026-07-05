@@ -30,19 +30,6 @@ sprints:
     model_hints:
       planning: balanced
       implementation: balanced
-  - id: ticket-0c8a2320
-    name: Fix unused-imports issues
-    description: Resolve 2 unused-imports issues in src/urivision/__init__.py
-    task_type: prefactor
-    priority: medium
-    estimate: 1d
-    files:
-    - src/urivision/__init__.py
-    rule_id: unused-imports
-    count: 2
-    model_hints:
-      planning: balanced
-      implementation: balanced
   - id: ticket-58e75d86
     name: Fix relative-imports issues
     description: Resolve 4 relative-imports issues in src/urivision/compiler.py
@@ -56,32 +43,6 @@ sprints:
     model_hints:
       planning: balanced
       implementation: balanced
-  - id: ticket-86b3cacb
-    name: Fix string-concat issues
-    description: Resolve 2 string-concat issues in src/urivision/compiler.py
-    task_type: prefactor
-    priority: medium
-    estimate: 1d
-    files:
-    - src/urivision/compiler.py
-    rule_id: string-concat
-    count: 2
-    model_hints:
-      planning: balanced
-      implementation: balanced
-  - id: ticket-745d4e63
-    name: Fix unused-imports issues
-    description: Resolve 2 unused-imports issues in src/urivision/compiler.py
-    task_type: prefactor
-    priority: medium
-    estimate: 1d
-    files:
-    - src/urivision/compiler.py
-    rule_id: unused-imports
-    count: 2
-    model_hints:
-      planning: balanced
-      implementation: balanced
   - id: ticket-701cf536
     name: Fix relative-imports issues
     description: Resolve 2 relative-imports issues in src/urivision/cli.py
@@ -91,19 +52,6 @@ sprints:
     files:
     - src/urivision/cli.py
     rule_id: relative-imports
-    count: 2
-    model_hints:
-      planning: balanced
-      implementation: balanced
-  - id: ticket-7e5da924
-    name: Fix unused-imports issues
-    description: Resolve 2 unused-imports issues in src/urivision/cli.py
-    task_type: prefactor
-    priority: medium
-    estimate: 1d
-    files:
-    - src/urivision/cli.py
-    rule_id: unused-imports
     count: 2
     model_hints:
       planning: balanced
@@ -121,32 +69,6 @@ sprints:
     model_hints:
       planning: balanced
       implementation: balanced
-  - id: ticket-27a070a0
-    name: Fix unused-imports issues
-    description: Resolve 2 unused-imports issues in src/urivision/dsl.py
-    task_type: prefactor
-    priority: medium
-    estimate: 1d
-    files:
-    - src/urivision/dsl.py
-    rule_id: unused-imports
-    count: 2
-    model_hints:
-      planning: balanced
-      implementation: balanced
-  - id: ticket-74ee80de
-    name: Fix unused-imports issues
-    description: Resolve 2 unused-imports issues in src/urivision/schemas.py
-    task_type: prefactor
-    priority: medium
-    estimate: 1d
-    files:
-    - src/urivision/schemas.py
-    rule_id: unused-imports
-    count: 2
-    model_hints:
-      planning: balanced
-      implementation: balanced
   - id: ticket-62bf42da
     name: Fix relative-imports issues
     description: Resolve 2 relative-imports issues in src/urivision/resolver.py
@@ -156,19 +78,6 @@ sprints:
     files:
     - src/urivision/resolver.py
     rule_id: relative-imports
-    count: 2
-    model_hints:
-      planning: balanced
-      implementation: balanced
-  - id: ticket-94a21166
-    name: Fix unused-imports issues
-    description: Resolve 2 unused-imports issues in src/urivision/resolver.py
-    task_type: prefactor
-    priority: medium
-    estimate: 1d
-    files:
-    - src/urivision/resolver.py
-    rule_id: unused-imports
     count: 2
     model_hints:
       planning: balanced
@@ -186,32 +95,6 @@ sprints:
     model_hints:
       planning: balanced
       implementation: balanced
-  - id: ticket-0dce1485
-    name: Fix string-concat issues
-    description: Resolve 1 string-concat issues in src/urivision/runner_litellm.py
-    task_type: prefactor
-    priority: medium
-    estimate: 1d
-    files:
-    - src/urivision/runner_litellm.py
-    rule_id: string-concat
-    count: 1
-    model_hints:
-      planning: balanced
-      implementation: balanced
-  - id: ticket-d15ad1f2
-    name: Fix unused-imports issues
-    description: Resolve 2 unused-imports issues in src/urivision/runner_litellm.py
-    task_type: prefactor
-    priority: medium
-    estimate: 1d
-    files:
-    - src/urivision/runner_litellm.py
-    rule_id: unused-imports
-    count: 2
-    model_hints:
-      planning: balanced
-      implementation: balanced
   - id: ticket-a3d14675
     name: Fix relative-imports issues
     description: Resolve 2 relative-imports issues in src/urivision/validators.py
@@ -221,32 +104,6 @@ sprints:
     files:
     - src/urivision/validators.py
     rule_id: relative-imports
-    count: 2
-    model_hints:
-      planning: balanced
-      implementation: balanced
-  - id: ticket-f782fed3
-    name: Fix string-concat issues
-    description: Resolve 1 string-concat issues in src/urivision/validators.py
-    task_type: prefactor
-    priority: medium
-    estimate: 1d
-    files:
-    - src/urivision/validators.py
-    rule_id: string-concat
-    count: 1
-    model_hints:
-      planning: balanced
-      implementation: balanced
-  - id: ticket-0ad897b0
-    name: Fix unused-imports issues
-    description: Resolve 2 unused-imports issues in src/urivision/validators.py
-    task_type: prefactor
-    priority: medium
-    estimate: 1d
-    files:
-    - src/urivision/validators.py
-    rule_id: unused-imports
     count: 2
     model_hints:
       planning: balanced
@@ -264,15 +121,1198 @@ sprints:
     model_hints:
       planning: balanced
       implementation: balanced
-  - id: ticket-47e1b998
-    name: Fix string-concat issues
-    description: Resolve 1 string-concat issues in tests/test_dsl.py
+  - id: ticket-4d9db1fd
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/__init__.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/__init__.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-cb1d25dd
+    name: Fix ast-sorted-imports issues
+    description: Resolve 1 ast-sorted-imports issues in src/urivision/__init__.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/__init__.py
+    rule_id: ast-sorted-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-e983bf45
+    name: Fix ruff-sorted-imports issues
+    description: Resolve 1 ruff-sorted-imports issues in src/urivision/__init__.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/__init__.py
+    rule_id: ruff-sorted-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-48798700
+    name: Fix import-optimization issues
+    description: Resolve 10 import-optimization issues in src/urivision/__init__.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - src/urivision/__init__.py
+    rule_id: import-optimization
+    count: 10
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f0039f54
+    name: Fix no-relative-imports issues
+    description: Resolve 11 no-relative-imports issues in src/urivision/__init__.py
+    task_type: bugfix
+    priority: critical
+    estimate: 3d
+    files:
+    - src/urivision/__init__.py
+    rule_id: no-relative-imports
+    count: 11
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-18354d79
+    name: Fix relative-imports issues
+    description: Resolve 4 relative-imports issues in src/urivision/bindings.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/urivision/bindings.py
+    rule_id: relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ab36d561
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/bindings.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/bindings.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-06f9bfc7
+    name: Fix import-optimization issues
+    description: Resolve 1 import-optimization issues in src/urivision/bindings.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/bindings.py
+    rule_id: import-optimization
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-11c52b45
+    name: Fix no-relative-imports issues
+    description: Resolve 2 no-relative-imports issues in src/urivision/bindings.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - src/urivision/bindings.py
+    rule_id: no-relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-accab73a
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/cli.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/cli.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-9009fc44
+    name: Fix ast-sorted-imports issues
+    description: Resolve 1 ast-sorted-imports issues in src/urivision/cli.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/cli.py
+    rule_id: ast-sorted-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-289ab4b5
+    name: Fix ast-print-statements issues
+    description: Resolve 16 ast-print-statements issues in src/urivision/cli.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - src/urivision/cli.py
+    rule_id: ast-print-statements
+    count: 16
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-961cf411
+    name: Fix ruff-print-statements issues
+    description: Resolve 16 ruff-print-statements issues in src/urivision/cli.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - src/urivision/cli.py
+    rule_id: ruff-print-statements
+    count: 16
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f6efc19c
+    name: Fix ruff-sorted-imports issues
+    description: Resolve 1 ruff-sorted-imports issues in src/urivision/cli.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/cli.py
+    rule_id: ruff-sorted-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-8ee835ed
+    name: Fix import-optimization issues
+    description: Resolve 2 import-optimization issues in src/urivision/cli.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/cli.py
+    rule_id: import-optimization
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-7d7b4580
+    name: Fix no-relative-imports issues
+    description: Resolve 0 no-relative-imports issues in src/urivision/cli.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - src/urivision/cli.py
+    rule_id: no-relative-imports
+    count: 0
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2edffdad
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/capability.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/capability.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f7e5ed4a
+    name: Fix import-optimization issues
+    description: Resolve 1 import-optimization issues in src/urivision/capability.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/capability.py
+    rule_id: import-optimization
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ee3b04d4
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/compiler.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/compiler.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-279b9ae8
+    name: Fix string-concat-fstring issues
+    description: Resolve 4 string-concat-fstring issues in src/urivision/compiler.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/urivision/compiler.py
+    rule_id: string-concat-fstring
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-e1009ff1
+    name: Fix import-optimization issues
+    description: Resolve 1 import-optimization issues in src/urivision/compiler.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/compiler.py
+    rule_id: import-optimization
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-c21e2dac
+    name: Fix no-relative-imports issues
+    description: Resolve 2 no-relative-imports issues in src/urivision/compiler.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - src/urivision/compiler.py
+    rule_id: no-relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-c3095a1c
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in src/urivision/llm_catalog.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/llm_catalog.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-5dab41ed
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/llm_catalog.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/llm_catalog.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-56c1e7f5
+    name: Fix no-relative-imports issues
+    description: Resolve 1 no-relative-imports issues in src/urivision/llm_catalog.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - src/urivision/llm_catalog.py
+    rule_id: no-relative-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ec276bad
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/dsl.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/dsl.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b4d953a1
+    name: Fix ast-sorted-imports issues
+    description: Resolve 1 ast-sorted-imports issues in src/urivision/dsl.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/dsl.py
+    rule_id: ast-sorted-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d42c72c6
+    name: Fix relative-imports issues
+    description: Resolve 4 relative-imports issues in src/urivision/method_router.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/urivision/method_router.py
+    rule_id: relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-72dc4b62
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/method_router.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/method_router.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-757dd4d2
+    name: Fix string-concat-fstring issues
+    description: Resolve 4 string-concat-fstring issues in src/urivision/method_router.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/urivision/method_router.py
+    rule_id: string-concat-fstring
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a797c6db
+    name: Fix pylint-string-concat issues
+    description: Resolve 2 pylint-string-concat issues in src/urivision/method_router.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/method_router.py
+    rule_id: pylint-string-concat
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f5874ac0
+    name: Fix magic-numbers issues
+    description: Resolve 1 magic-numbers issues in src/urivision/method_router.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/method_router.py
+    rule_id: magic-numbers
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-bd94cb58
+    name: Fix string-formatting issues
+    description: Resolve 1 string-formatting issues in src/urivision/method_router.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/method_router.py
+    rule_id: string-formatting
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-9b6830f8
+    name: Fix import-optimization issues
+    description: Resolve 3 import-optimization issues in src/urivision/method_router.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/method_router.py
+    rule_id: import-optimization
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-56893969
+    name: Fix no-relative-imports issues
+    description: Resolve 2 no-relative-imports issues in src/urivision/method_router.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - src/urivision/method_router.py
+    rule_id: no-relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b63e3160
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in src/urivision/orchestrator.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/orchestrator.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-8dda4925
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/orchestrator.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/orchestrator.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-aa6b6fbd
+    name: Fix string-concat-fstring issues
+    description: Resolve 2 string-concat-fstring issues in src/urivision/orchestrator.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/orchestrator.py
+    rule_id: string-concat-fstring
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-63184783
+    name: Fix import-optimization issues
+    description: Resolve 1 import-optimization issues in src/urivision/orchestrator.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/orchestrator.py
+    rule_id: import-optimization
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ddd43d66
+    name: Fix no-relative-imports issues
+    description: Resolve 1 no-relative-imports issues in src/urivision/orchestrator.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - src/urivision/orchestrator.py
+    rule_id: no-relative-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-dea1df07
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/native_profiles.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/native_profiles.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-9deec90c
+    name: Fix ast-sorted-imports issues
+    description: Resolve 1 ast-sorted-imports issues in src/urivision/native_profiles.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/native_profiles.py
+    rule_id: ast-sorted-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4b5f9f60
+    name: Fix pylint-string-concat issues
+    description: Resolve 1 pylint-string-concat issues in src/urivision/native_profiles.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/native_profiles.py
+    rule_id: pylint-string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-67f7a4e0
+    name: Fix string-formatting issues
+    description: Resolve 1 string-formatting issues in src/urivision/native_profiles.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/native_profiles.py
+    rule_id: string-formatting
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4a20d150
+    name: Fix import-optimization issues
+    description: Resolve 2 import-optimization issues in src/urivision/native_profiles.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/native_profiles.py
+    rule_id: import-optimization
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-64980923
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/platforms.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/platforms.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-03bf8e00
+    name: Fix ast-sorted-imports issues
+    description: Resolve 1 ast-sorted-imports issues in src/urivision/platforms.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/platforms.py
+    rule_id: ast-sorted-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-eac52e7c
+    name: Fix import-optimization issues
+    description: Resolve 2 import-optimization issues in src/urivision/platforms.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/platforms.py
+    rule_id: import-optimization
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-dc1fbf62
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/resolver.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/resolver.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-31cfdae9
+    name: Fix import-optimization issues
+    description: Resolve 1 import-optimization issues in src/urivision/resolver.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/resolver.py
+    rule_id: import-optimization
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-e7ce27e6
+    name: Fix no-relative-imports issues
+    description: Resolve 1 no-relative-imports issues in src/urivision/resolver.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - src/urivision/resolver.py
+    rule_id: no-relative-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a104b40c
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/runner_litellm.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/runner_litellm.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3d28102a
+    name: Fix string-concat-fstring issues
+    description: Resolve 2 string-concat-fstring issues in src/urivision/runner_litellm.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/runner_litellm.py
+    rule_id: string-concat-fstring
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-017c3cd7
+    name: Fix import-optimization issues
+    description: Resolve 4 import-optimization issues in src/urivision/runner_litellm.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/urivision/runner_litellm.py
+    rule_id: import-optimization
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a7a82154
+    name: Fix no-relative-imports issues
+    description: Resolve 4 no-relative-imports issues in src/urivision/runner_litellm.py
+    task_type: bugfix
+    priority: critical
+    estimate: 2d
+    files:
+    - src/urivision/runner_litellm.py
+    rule_id: no-relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-99b1bfc2
+    name: Fix relative-imports issues
+    description: Resolve 6 relative-imports issues in src/urivision/runtime.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - src/urivision/runtime.py
+    rule_id: relative-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ca5ab7a2
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/runtime.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/runtime.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-8677f697
+    name: Fix ast-sorted-imports issues
+    description: Resolve 1 ast-sorted-imports issues in src/urivision/runtime.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/runtime.py
+    rule_id: ast-sorted-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-73f4abc1
+    name: Fix ast-string-concat issues
+    description: Resolve 2 ast-string-concat issues in src/urivision/runtime.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/runtime.py
+    rule_id: ast-string-concat
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2e9de217
+    name: Fix ast-missing-return-type issues
+    description: Resolve 1 ast-missing-return-type issues in src/urivision/runtime.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/runtime.py
+    rule_id: ast-missing-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-e9eebdd8
+    name: Fix ruff-sorted-imports issues
+    description: Resolve 1 ruff-sorted-imports issues in src/urivision/runtime.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/runtime.py
+    rule_id: ruff-sorted-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-cf99797e
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in src/urivision/runtime.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/runtime.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a79e1151
+    name: Fix string-concat-fstring issues
+    description: Resolve 10 string-concat-fstring issues in src/urivision/runtime.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - src/urivision/runtime.py
+    rule_id: string-concat-fstring
+    count: 10
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-de1c208e
+    name: Fix magic-numbers issues
+    description: Resolve 19 magic-numbers issues in src/urivision/runtime.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - src/urivision/runtime.py
+    rule_id: magic-numbers
+    count: 19
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-79c7fdb0
+    name: Fix no-relative-imports issues
+    description: Resolve 3 no-relative-imports issues in src/urivision/runtime.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - src/urivision/runtime.py
+    rule_id: no-relative-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-719b9718
+    name: Fix relative-imports issues
+    description: Resolve 4 relative-imports issues in src/urivision/registry.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/urivision/registry.py
+    rule_id: relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-0783ab84
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/registry.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/registry.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-412ca0c9
+    name: Fix ast-string-concat issues
+    description: Resolve 2 ast-string-concat issues in src/urivision/registry.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/registry.py
+    rule_id: ast-string-concat
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-807b8a32
+    name: Fix string-concat-fstring issues
+    description: Resolve 4 string-concat-fstring issues in src/urivision/registry.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/urivision/registry.py
+    rule_id: string-concat-fstring
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-427095e4
+    name: Fix import-optimization issues
+    description: Resolve 1 import-optimization issues in src/urivision/registry.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/registry.py
+    rule_id: import-optimization
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-0874e147
+    name: Fix no-relative-imports issues
+    description: Resolve 2 no-relative-imports issues in src/urivision/registry.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - src/urivision/registry.py
+    rule_id: no-relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3b6ce654
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/schemas.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/schemas.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-1ed82426
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/uri.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/uri.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-5f95b4a8
+    name: Fix llm-generated-code issues
+    description: Resolve 1 llm-generated-code issues in src/urivision/uri.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/uri.py
+    rule_id: llm-generated-code
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-efd39a96
+    name: Fix import-optimization issues
+    description: Resolve 2 import-optimization issues in src/urivision/uri.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/uri.py
+    rule_id: import-optimization
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-573564e9
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in src/urivision/validators.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/validators.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a3964124
+    name: Fix string-concat-fstring issues
+    description: Resolve 2 string-concat-fstring issues in src/urivision/validators.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/validators.py
+    rule_id: string-concat-fstring
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d2b32501
+    name: Fix no-relative-imports issues
+    description: Resolve 1 no-relative-imports issues in src/urivision/validators.py
+    task_type: bugfix
+    priority: critical
+    estimate: 1d
+    files:
+    - src/urivision/validators.py
+    rule_id: no-relative-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b4b364d0
+    name: Fix ast-sorted-imports issues
+    description: Resolve 1 ast-sorted-imports issues in tests/test_dsl.py
     task_type: prefactor
     priority: medium
     estimate: 1d
     files:
     - tests/test_dsl.py
-    rule_id: string-concat
+    rule_id: ast-sorted-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-9f0137ab
+    name: Fix ast-string-concat issues
+    description: Resolve 1 ast-string-concat issues in tests/test_dsl.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_dsl.py
+    rule_id: ast-string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-9f69b997
+    name: Fix ast-missing-return-type issues
+    description: Resolve 6 ast-missing-return-type issues in tests/test_dsl.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - tests/test_dsl.py
+    rule_id: ast-missing-return-type
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-9872b6b5
+    name: Fix ruff-sorted-imports issues
+    description: Resolve 1 ruff-sorted-imports issues in tests/test_dsl.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_dsl.py
+    rule_id: ruff-sorted-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-322cde9e
+    name: Fix string-concat-fstring issues
+    description: Resolve 2 string-concat-fstring issues in tests/test_dsl.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_dsl.py
+    rule_id: string-concat-fstring
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-feeb6fbc
+    name: Fix import-optimization issues
+    description: Resolve 2 import-optimization issues in tests/test_dsl.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_dsl.py
+    rule_id: import-optimization
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-c783f64d
+    name: Fix ast-missing-return-type issues
+    description: Resolve 4 ast-missing-return-type issues in tests/test_backend_profiles.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - tests/test_backend_profiles.py
+    rule_id: ast-missing-return-type
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4357a227
+    name: Fix ruff-sorted-imports issues
+    description: Resolve 1 ruff-sorted-imports issues in tests/test_backend_profiles.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_backend_profiles.py
+    rule_id: ruff-sorted-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-157ccfb0
+    name: Fix smart-return-type issues
+    description: Resolve 4 smart-return-type issues in tests/test_backend_profiles.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - tests/test_backend_profiles.py
+    rule_id: smart-return-type
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-c1752654
+    name: Fix ai-boilerplate issues
+    description: Resolve 1 ai-boilerplate issues in tests/test_backend_profiles.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_backend_profiles.py
+    rule_id: ai-boilerplate
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4e2e9eb3
+    name: Fix ast-unused-imports issues
+    description: Resolve 3 ast-unused-imports issues in tests/test_native_lab.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_native_lab.py
+    rule_id: ast-unused-imports
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-8431e6f7
+    name: Fix ast-sorted-imports issues
+    description: Resolve 1 ast-sorted-imports issues in tests/test_native_lab.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_native_lab.py
+    rule_id: ast-sorted-imports
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a4f7785e
+    name: Fix ast-missing-return-type issues
+    description: Resolve 5 ast-missing-return-type issues in tests/test_native_lab.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - tests/test_native_lab.py
+    rule_id: ast-missing-return-type
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-45feeabe
+    name: Fix ruff-sorted-imports issues
+    description: Resolve 1 ruff-sorted-imports issues in tests/test_native_lab.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_native_lab.py
+    rule_id: ruff-sorted-imports
     count: 1
     model_hints:
       planning: balanced

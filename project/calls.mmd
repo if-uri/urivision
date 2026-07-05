@@ -1,28 +1,128 @@
 flowchart LR
 %% generated in 0.00s
-    subgraph src__urivision
-        src__urivision__resolver__label["label"]
-        src__urivision__resolver__artifact_path["artifact_path"]
-        src__urivision__compiler__compile_prompt["compile_prompt"]
-        src__urivision__validators___scheme["_scheme"]
-        src__urivision__resolver__model_id["model_id"]
-        src__urivision__run_source["run_source"]
-        src__urivision__dsl__parse["parse"]
-        src__urivision__schemas__resolve_schema["resolve_schema"]
-        src__urivision__runner_litellm__run["run"]
-        src__urivision__validators__validate["validate"]
-        src__urivision__run["run"]
-        src__urivision__run_file["run_file"]
-        src__urivision__cli__main["main"]
+    subgraph examples__function_binding_example
+        examples__function_binding_example__add["add"]
     end
-    src__urivision__cli__main --> src__urivision__run_file
+    subgraph native__linux
+        native__linux__probe_linux_display__print["print"]
+    end
+    subgraph src__urivision
+        src__urivision__registry__CapabilityRegistry__find["find"]
+        src__urivision__runtime___ensure_state["_ensure_state"]
+        src__urivision__uri__match_uri["match_uri"]
+        src__urivision__registry__CapabilityRegistry__all["all"]
+        src__urivision__runtime___walk["_walk"]
+        src__urivision__registry__CapabilityRegistry__call["call"]
+        src__urivision__dsl__parse["parse"]
+        src__urivision__native_profiles__list_native_targets["list_native_targets"]
+        src__urivision__bindings__register_module_uri_functions["register_module_uri_functions"]
+        src__urivision__orchestrator___resolve_templates["_resolve_templates"]
+        src__urivision__registry__schema_from_signature["schema_from_signature"]
+        src__urivision__validators__validate["validate"]
+        src__urivision__orchestrator___get_path["_get_path"]
+        src__urivision__runtime__build_default_registry["build_default_registry"]
+        src__urivision__run_source["run_source"]
+        src__urivision__native_profiles__get_native_target["get_native_target"]
+        src__urivision__orchestrator__run_plan["run_plan"]
+        src__urivision__orchestrator__PlanRunner____init__["__init__"]
+        src__urivision__compiler__compile_prompt["compile_prompt"]
+        src__urivision__run_file["run_file"]
+        src__urivision__orchestrator__PlanRunner__run["run"]
+        src__urivision__orchestrator__run_plan_file["run_plan_file"]
+        src__urivision__uri__normalize_uri["normalize_uri"]
+        src__urivision__runtime___default_tree["_default_tree"]
+        src__urivision__registry__validate_payload["validate_payload"]
+        src__urivision__registry__CapabilityRegistry__register["register"]
+        src__urivision__orchestrator___check_expectation["_check_expectation"]
+        src__urivision__resolver__label["label"]
+        src__urivision__bindings__uri_function["uri_function"]
+        src__urivision__runtime__default_runtime["default_runtime"]
+        src__urivision__llm_catalog__compile_runtime_prompt["compile_runtime_prompt"]
+        src__urivision__llm_catalog__compile_runtime_tools["compile_runtime_tools"]
+        src__urivision__bindings__register_uri_function["register_uri_function"]
+        src__urivision__native_profiles__native_matrix_markdown["native_matrix_markdown"]
+        src__urivision__run["run"]
+        src__urivision__method_router__route_matrix["route_matrix"]
+        src__urivision__runtime___find_element["_find_element"]
+        src__urivision__validators___scheme["_scheme"]
+        src__urivision__runner_litellm__run["run"]
+        src__urivision__resolver__artifact_path["artifact_path"]
+        src__urivision__schemas__resolve_schema["resolve_schema"]
+        src__urivision__uri__parse_uri["parse_uri"]
+        src__urivision__runtime__UriRuntime____init__["__init__"]
+        src__urivision__resolver__model_id["model_id"]
+        src__urivision__registry__CapabilityRegistry__capability["capability"]
+        src__urivision__uri___match_segment["_match_segment"]
+        src__urivision__native_profiles__coverage_summary["coverage_summary"]
+        src__urivision__method_router__route_intent["route_intent"]
+    end
+    subgraph tools__check_confidence_gate
+        tools__check_confidence_gate__main["main"]
+    end
+    subgraph tools__probe_native_host
+        tools__probe_native_host__probe["probe"]
+        tools__probe_native_host__run_short["run_short"]
+        tools__probe_native_host__main["main"]
+        tools__probe_native_host__read_os_release["read_os_release"]
+    end
+    subgraph tools__probe_runtime
+        tools__probe_runtime__run_probe["run_probe"]
+        tools__probe_runtime__main["main"]
+    end
+    subgraph tools__run_native_lab_matrix
+        tools__run_native_lab_matrix__main["main"]
+        tools__run_native_lab_matrix__build_matrix["build_matrix"]
+        tools__run_native_lab_matrix__contract_check["contract_check"]
+    end
     src__urivision__runner_litellm__run --> src__urivision__resolver__model_id
     src__urivision__runner_litellm__run --> src__urivision__schemas__resolve_schema
     src__urivision__runner_litellm__run --> src__urivision__compiler__compile_prompt
     src__urivision__runner_litellm__run --> src__urivision__resolver__artifact_path
+    src__urivision__compiler__compile_prompt --> src__urivision__resolver__label
+    src__urivision__registry__CapabilityRegistry__capability --> src__urivision__registry__schema_from_signature
+    src__urivision__registry__CapabilityRegistry__find --> src__urivision__uri__match_uri
+    src__urivision__registry__CapabilityRegistry__call --> src__urivision__registry__validate_payload
+    tools__check_confidence_gate__main --> native__linux__probe_linux_display__print
+    tools__check_confidence_gate__main --> src__urivision__registry__CapabilityRegistry__all
+    tools__run_native_lab_matrix__contract_check --> src__urivision__runtime__default_runtime
+    tools__run_native_lab_matrix__contract_check --> src__urivision__registry__CapabilityRegistry__all
+    tools__run_native_lab_matrix__build_matrix --> tools__run_native_lab_matrix__contract_check
+    tools__run_native_lab_matrix__build_matrix --> src__urivision__native_profiles__list_native_targets
+    tools__run_native_lab_matrix__build_matrix --> src__urivision__native_profiles__coverage_summary
+    tools__run_native_lab_matrix__build_matrix --> src__urivision__method_router__route_intent
+    tools__run_native_lab_matrix__main --> tools__run_native_lab_matrix__build_matrix
+    tools__probe_native_host__probe --> tools__probe_native_host__run_short
+    tools__probe_native_host__probe --> tools__probe_native_host__read_os_release
+    tools__probe_native_host__main --> tools__probe_native_host__probe
+    tools__probe_native_host__main --> native__linux__probe_linux_display__print
     src__urivision__run_source --> src__urivision__validators__validate
     src__urivision__run_source --> src__urivision__dsl__parse
     src__urivision__run_file --> src__urivision__run_source
     src__urivision__run --> src__urivision__run_source
     src__urivision__validators__validate --> src__urivision__validators___scheme
-    src__urivision__compiler__compile_prompt --> src__urivision__resolver__label
+    tools__probe_runtime__run_probe --> src__urivision__runtime__default_runtime
+    tools__probe_runtime__main --> tools__probe_runtime__run_probe
+    tools__probe_runtime__main --> native__linux__probe_linux_display__print
+    src__urivision__llm_catalog__compile_runtime_prompt --> src__urivision__runtime__default_runtime
+    src__urivision__llm_catalog__compile_runtime_tools --> src__urivision__runtime__default_runtime
+    src__urivision__bindings__uri_function --> src__urivision__registry__schema_from_signature
+    src__urivision__bindings__register_module_uri_functions --> src__urivision__bindings__register_uri_function
+    src__urivision__orchestrator___resolve_templates --> src__urivision__orchestrator___get_path
+    src__urivision__orchestrator__PlanRunner____init__ --> src__urivision__runtime__default_runtime
+    src__urivision__orchestrator__PlanRunner__run --> src__urivision__orchestrator___resolve_templates
+    src__urivision__orchestrator__PlanRunner__run --> src__urivision__orchestrator___check_expectation
+    src__urivision__orchestrator__run_plan_file --> src__urivision__orchestrator__run_plan
+    examples__function_binding_example__add --> src__urivision__bindings__uri_function
+    src__urivision__native_profiles__coverage_summary --> src__urivision__native_profiles__list_native_targets
+    src__urivision__native_profiles__native_matrix_markdown --> src__urivision__native_profiles__coverage_summary
+    src__urivision__native_profiles__native_matrix_markdown --> src__urivision__native_profiles__list_native_targets
+    src__urivision__uri__normalize_uri --> src__urivision__uri__parse_uri
+    src__urivision__uri__match_uri --> src__urivision__uri__parse_uri
+    src__urivision__uri__match_uri --> src__urivision__uri___match_segment
+    src__urivision__runtime___ensure_state --> src__urivision__runtime___default_tree
+    src__urivision__runtime___find_element --> src__urivision__runtime___walk
+    src__urivision__runtime__build_default_registry --> src__urivision__registry__CapabilityRegistry__register
+    src__urivision__runtime__UriRuntime____init__ --> src__urivision__runtime__build_default_registry
+    src__urivision__method_router__route_intent --> src__urivision__native_profiles__get_native_target
+    src__urivision__method_router__route_matrix --> src__urivision__native_profiles__list_native_targets
+    src__urivision__method_router__route_matrix --> src__urivision__method_router__route_intent
