@@ -5,7 +5,7 @@ from __future__ import annotations
 from .dsl import Process
 
 REQUIRED = ("proc", "model", "input_uri", "question", "output_uri", "output_schema")
-ALLOWED_SCHEMES = {"view", "llm", "artifact", "aspect", "schema", "policy", "event"}
+ALLOWED_SCHEMES = {"view", "llm", "artifact", "aspect", "schema", "policy", "event", "ui", "input", "browser", "vision", "kvm", "hid", "guard", "runtime", "plan", "capability"}
 
 
 class VuriValidationError(ValueError):

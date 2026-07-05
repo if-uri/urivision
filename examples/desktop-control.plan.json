@@ -1,0 +1,42 @@
+{
+  "schema": "schema://runtime/uri-plan.v1",
+  "goal": "Znajdź pole Search, ustaw fokus, wpisz tekst i potwierdź, że tekst jest widoczny.",
+  "steps": [
+    {
+      "id": "find_search",
+      "call": "ui://local/element/query/find",
+      "with": {"role": "textbox", "name": "Search"},
+      "expect_result": {"ok": true, "found": true}
+    },
+    {
+      "id": "focus_search",
+      "call": "ui://local/element/command/focus",
+      "with": {"element_id": "${find_search.element.id}"},
+      "expect_result": {"ok": true}
+    },
+    {
+      "id": "type_text",
+      "call": "input://local/keyboard/command/type",
+      "with": {"text": "URI runtime works"},
+      "expect_result": {"ok": true}
+    },
+    {
+      "id": "verify_text",
+      "call": "view://local/screen/query/text",
+      "with": {"contains": "URI runtime works"},
+      "expect_result": {"ok": true, "found": true}
+    },
+    {
+      "id": "find_save",
+      "call": "ui://local/element/query/find",
+      "with": {"role": "button", "name": "Save"},
+      "expect_result": {"ok": true, "found": true}
+    },
+    {
+      "id": "press_save",
+      "call": "ui://local/element/command/press",
+      "with": {"element_id": "${find_save.element.id}"},
+      "expect_result": {"ok": true}
+    }
+  ]
+}

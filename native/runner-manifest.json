@@ -1,0 +1,19 @@
+{
+  "schema": "schema://runtime/native-runner-manifest.v1",
+  "minimum_runners": [
+    {"profile": "windows-11-uia", "runner": "self-hosted Windows 11 interactive desktop"},
+    {"profile": "macos-26-ax-apple-silicon", "runner": "self-hosted Mac with TCC permissions"},
+    {"profile": "ubuntu-24-04-wayland", "runner": "self-hosted Linux GNOME Wayland"},
+    {"profile": "ubuntu-22-04-x11", "runner": "Docker or self-hosted Linux X11/noVNC"},
+    {"profile": "android-adb-uiautomator", "runner": "Android emulator or device with adb"},
+    {"profile": "ios-xcuitest", "runner": "Mac with Xcode simulator/device"},
+    {"profile": "hid-kvm-rp2040", "runner": "hardware lab with HDMI capture and USB HID"}
+  ],
+  "do_not_claim": [
+    "Do not claim full Windows support from Linux Docker contract tests.",
+    "Do not claim macOS AX support without TCC permission evidence.",
+    "Do not claim Wayland input support without portal/libei or compositor-specific proof.",
+    "Do not claim mobile support from desktop accessibility tests.",
+    "Do not claim BIOS/login-screen support without HID/KVM evidence."
+  ]
+}

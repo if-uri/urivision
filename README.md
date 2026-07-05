@@ -1,13 +1,12 @@
-# VURI — Visual URI Process Language (`urivision`)
+# urivision 0.3 — VURI + URI Runtime + Native Test Lab
+
+Ten pakiet zachowuje dotychczasowy rdzeń `urivision` dla procesów `.vuri`, ale dodaje drugą warstwę: **URI Runtime Control Plane**. Celem jest przejście z reużycia przez import Pythona na reużycie przez **kontrakty URI**, które LLM może łatwo zrozumieć, katalogować i orkiestracyjnie wywoływać.
+
+## Rdzeń VURI — procesy `.vuri`
 
 Lekki, szybki model **analizy i kontroli obrazu**. Zamiast długiego promptu wskazujesz
 **obraz + model + aspekty + pytanie decyzyjne + schemat wyniku** — a proces kompiluje się do
 wywołania modelu vision i zwraca **DecisionCard: decyzję z dowodami, nie opis**.
-
-Powstało z lekcji [[verify-before-act]]: percepcja ma być tanim, powtarzalnym procesem URI
-(warstwa 3: „wizja LLM"), a nie ręcznym oglądaniem zrzutów.
-
-## Proces `.vuri`
 
 ```txt
 proc   view://local/screenshot/query/decision-card
@@ -23,10 +22,7 @@ Każda część to **adres URI** — reużycie zdolności przez URI, nie import 
 `view:// proc/query` · `artifact:// obraz/raport` · `llm:// model` · `aspect:// co ocenić` ·
 `schema:// kontrakt wyniku` · `policy:// zasady jakości` · `event:// ślad wykonania`.
 
-## Użycie
-
 ```bash
-pip install -e '.[litellm]'
 urivision run examples/screen-review.vuri --dry-run          # kompiluje wywołanie (bez modelu)
 urivision run examples/screen-review.vuri --root screenshots=/data/shots
 ```
@@ -36,13 +32,12 @@ from urivision import run_file
 res = run_file("examples/screen-review.vuri")                # DecisionCard → artifact://reports/...
 ```
 
-## Kontrakt wyniku — DecisionCard v1
+**Kontrakt wyniku — DecisionCard v1:** `decision` (ok|fix|block|unknown) · `confidence` ·
+`summary` · `findings[]` (aspect, severity, `region.anchor` — kotwica opisowa, nie piksele,
+evidence, impact, recommendation) · `next_actions[]`. Wymuszany przez
+`response_format=json_schema` (structured output).
 
-`decision` (ok|fix|block|unknown) · `confidence` · `summary` · `findings[]` (aspect, severity,
-`region.anchor` — kotwica opisowa, nie piksele, evidence, impact, recommendation) · `next_actions[]`.
-Wymuszany przez `response_format=json_schema` (structured output).
-
-## Architektura
+**Potok:**
 
 ```
 .vuri → dsl.parse → AST(Process) → validators.validate (blokuje złe procesy TANIO)
@@ -52,167 +47,302 @@ Wymuszany przez `response_format=json_schema` (structured output).
 ```
 
 Rdzeń (parser/walidacja/kompilacja) nie ma zależności i jest w pełni testowalny bez modelu
-(`pytest`, `--dry-run`). Model dokłada się jako `[litellm]`.
+(`make test`, `--dry-run`). Model dokłada się jako `[litellm]`.
+
+## Nowość w 0.3 — Native Test Lab
+
+Ta warstwa dodaje to, czego brakowało po Dockerze: **macierz natywnych runnerów OS** i narzędzia do oceny, czy można realnie deklarować wsparcie dla popularnych systemów z ostatnich lat. Docker nadal służy do kontraktu i Linuksa, ale Windows UIA, macOS AX, Wayland, Android, iOS, RDP/Citrix i HID/KVM wymagają realnych hostów lub urządzeń.
+
+Nowe komendy:
+
+```bash
+urivision native-matrix --format markdown
+urivision native-probe --format json
+urivision route type_text --profile windows-11-uia
+urivision route-matrix
+
+make native-matrix
+make native-probe
+make confidence
+```
+
+Nowe dokumenty:
+
+```txt
+docs/NATIVE_TEST_LAB.md
+docs/OS_COVERAGE_MATRIX.md
+docs/METHOD_ROUTER_DESIGN.md
+docs/ADAPTER_CONTRACT.md
+docs/EVENT_TRACE_SCHEMA.md
+docs/BENCHMARK_PLAN.md
+docs/SECURITY_POLICY.md
+```
+
+Nowe profile natywne obejmują Windows 10/11/Server, macOS 14/15/26, Ubuntu X11/Wayland, Fedora GNOME Wayland, KDE Wayland, Debian/RHEL/Rocky, ChromeOS, Android, iOS, VNC/noVNC, RDP/Citrix/Horizon oraz HID/KVM/RP2040.
+
+## Po co ta zmiana
+
+Dotychczasowy `urivision` dobrze rozwiązuje warstwę percepcji: `.vuri` opisuje obraz, model, aspekty, pytanie decyzyjne i schemat wyniku, a runtime kompiluje to do DecisionCard. To zostaje bez zmian.
+
+Problem kontroli systemów operacyjnych jest jednak szerszy: funkcje typu `screenshot`, `OCR`, `find element`, `focus`, `type`, `click`, `browser fill`, `KVM batch`, `verify_texts` nie powinny być znane agentowi jako importy Pythona. Powinny być znane jako **adresowalne zdolności**:
+
+```txt
+ui://local/tree/query/snapshot
+ui://local/element/query/find
+ui://local/element/command/focus
+input://local/keyboard/command/type
+browser://chrome/element/command/fill
+kvm://local/input/command/task_run
+guard://local/batch/command/run
+vision://local/screen/command/parse
+runtime://local/capabilities/query/list
+```
+
+Dzięki temu LLM dostaje katalog funkcji z opisami, schematami argumentów, efektami ubocznymi i przykładami. Orkiestruje przez URI, a implementacja pod spodem może być inna dla Windows, macOS, Linux X11, Wayland, noVNC, RDP, HID albo przeglądarki.
+
+## Instalacja lokalna
+
+```bash
+pip install -e .
+```
+
+Opcjonalnie dla ścieżki vision/LiteLLM:
+
+```bash
+pip install -e '.[litellm]'
+```
+
+## Szybki test
+
+```bash
+urivision catalog --format markdown
+urivision explain input://local/keyboard/command/type
+urivision call input://local/keyboard/command/type --json '{"text":"hello"}'
+urivision plan examples/desktop-control.plan.json
+```
+
+## Katalog dla LLM
+
+```bash
+urivision catalog --format prompt
+```
+
+Zwraca instrukcję i pełny katalog capability. To jest blok, który można wstrzyknąć do promptu orkiestratora.
+
+Przykład fragmentu:
+
+```txt
+- input://{target}/keyboard/command/type
+    kind: command; title: Type text through keyboard backend
+    when: Wysyła tekst przez backend klawiatury. Używać po focus/locator i zawsze z postcondition verify.
+    args: text:string*
+    side_effects: sends keyboard input; may type into wrong focused element if focus is stale
+    safety: needs-verification
+```
+
+## Jedno wywołanie przez URI
+
+```bash
+urivision call ui://local/element/query/find --json '{"role":"button","name":"Save"}'
+```
+
+Wynik:
+
+```json
+{
+  "ok": true,
+  "found": true,
+  "element": {
+    "id": "button:save",
+    "role": "button",
+    "name": "Save"
+  }
+}
+```
+
+## Plan orkiestracji
+
+Plany są zwykłym JSON. Każdy krok ma `call` jako URI i `with` jako payload.
+
+```json
+{
+  "schema": "schema://runtime/uri-plan.v1",
+  "goal": "Znajdź pole Search, ustaw fokus, wpisz tekst i potwierdź, że tekst jest widoczny.",
+  "steps": [
+    {
+      "id": "find_search",
+      "call": "ui://local/element/query/find",
+      "with": {"role": "textbox", "name": "Search"},
+      "expect_result": {"ok": true, "found": true}
+    },
+    {
+      "id": "focus_search",
+      "call": "ui://local/element/command/focus",
+      "with": {"element_id": "${find_search.element.id}"}
+    },
+    {
+      "id": "type_text",
+      "call": "input://local/keyboard/command/type",
+      "with": {"text": "URI runtime works"}
+    },
+    {
+      "id": "verify_text",
+      "call": "view://local/screen/query/text",
+      "with": {"contains": "URI runtime works"},
+      "expect_result": {"ok": true, "found": true}
+    }
+  ]
+}
+```
+
+Uruchomienie:
+
+```bash
+urivision plan examples/desktop-control.plan.json
+```
+
+## Guarded batch
+
+Dla niestabilnego inputu, np. KVM/VNC/HID, nie należy akceptować samego faktu wysłania klawiszy. Trzeba sprawdzić skutek.
+
+```json
+{
+  "call": "guard://local/batch/command/run",
+  "with": {
+    "steps": [{"op": "type", "text": "guarded input"}],
+    "expect": {
+      "uri": "view://local/screen/query/text",
+      "with": {"contains": "guarded input"}
+    },
+    "tries": 2
+  }
+}
+```
+
+To formalizuje wzorzec:
+
+```txt
+act → verify postcondition → retry/fail
+```
+
+## Reużycie istniejących funkcji przez URI
+
+Migracja istniejącej funkcji:
+
+```python
+from urivision import CapabilityRegistry, register_uri_function, uri_function
+
+@uri_function(
+    "math://local/add/command/run",
+    title="Add two integers",
+    description="Przykład migracji zwykłej funkcji Python do wywołania przez URI.",
+    kind="command",
+)
+def add(a: int, b: int) -> dict:
+    return {"ok": True, "value": a + b}
+
+registry = CapabilityRegistry()
+register_uri_function(registry, add)
+print(registry.call("math://local/add/command/run", {"a": 2, "b": 3}))
+```
+
+W refaktoryzacji oznacza to: najpierw opakowujesz istniejące funkcje kontraktem URI, dopiero później porządkujesz implementację.
+
+## Warstwy architektury
+
+```txt
+LLM / user intent
+  ↓
+runtime://local/capabilities/query/list       # LLM poznaje funkcje
+  ↓
+URI plan: ui://..., input://..., browser://... # LLM orkiestruje przez adresy
+  ↓
+CapabilityRegistry                            # dopasowanie URI do handlera
+  ↓
+Adapter OS/browser/KVM/HID/vision             # konkretne wykonanie
+  ↓
+Trace + postconditions                         # verify-before-act
+```
+
+## Zasada wyboru backendu
+
+1. `browser://` / CDP / Playwright — gdy to przeglądarka albo Electron.
+2. `ui://` / accessibility tree — gdy aplikacja wystawia semantykę UI.
+3. `vision://` — gdy trzeba zsyntetyzować elementy ze screena.
+4. `input://` — klawiatura/mysz jako fallback.
+5. `kvm://` / `hid://` — gdy system jest zewnętrzny, zablokowany albo przed logowaniem.
+6. `guard://` — każde kruche wejście z postcondition.
+
+## Co jest mockiem, a co kontraktem
+
+Domyślne handlery runtime są mockami bez zależności systemowych. To celowe. Stabilny ma być **kontrakt URI**, nie bieżący backend.
+
+Do podmiany w realnym wdrożeniu:
+
+| URI | Realny adapter |
+| --- | --- |
+| `ui://...` | Windows UIA, macOS AX, Linux AT-SPI, AccessKit/xa11y |
+| `browser://...` | Playwright, CDP, extension/plugin |
+| `view://...` | screenshot API, VNC/RDP capture, OCR worker, EasyOCR |
+| `vision://...` | OmniParser, ScreenParser, lokalny VLM, LiteLLM vision |
+| `input://...` | SendInput, CGEvent, xdotool, ydotool, libei |
+| `kvm://...` | noVNC/RFB, RDP, KVM connector |
+| `hid://...` | RP2040/USB HID, IP-KVM |
+
+## Struktura plików runtime
+
+```txt
+src/urivision/uri.py              # parser i matcher URI
+src/urivision/capability.py       # kontrakt capability + RuntimeContext
+src/urivision/registry.py         # rejestr, dispatch, walidacja payloadów, katalog LLM
+src/urivision/runtime.py          # domyślne capabilities i mock runtime
+src/urivision/orchestrator.py     # JSON plan runner
+src/urivision/bindings.py         # @uri_function dla migracji istniejących funkcji
+src/urivision/llm_catalog.py      # prompt/tools dla LLM
+src/urivision/method_router.py    # wybór backendu wg profilu OS
+src/urivision/native_profiles.py  # profile natywne (Windows/macOS/Linux/Android/…)
+examples/*.plan.json              # przykładowe procesy URI
+examples/function_binding_example.py
+```
+
+## Dlaczego to będzie szybsze i stabilniejsze
+
+Obecny problem nie wynika wyłącznie z OCR. Problemem jest to, że agent za każdym razem musi od nowa domyślać się: co jest funkcją, jaki ma payload, czy kliknięcie jest bezpieczne, czy po typowaniu trzeba zweryfikować wynik. Katalog URI przenosi tę wiedzę do jawnych kontraktów.
+
+To nie usuwa kosztu screenshot/OCR, ale zmniejsza liczbę ślepych prób i pozwala routerowi wybierać lepszą ścieżkę: DOM/accessibility przed myszą, batch z postcondition zamiast serii niezweryfikowanych kliknięć.
+
+## Docker / backend matrix
+
+Warstwa Docker znajduje się w `docker/` i służy do testowania URI Runtime na czterech profilach backendów:
+
+- `linux-x11-novnc` — Linux X11/noVNC harness, przygotowany pod Xvfb/x11vnc/VNC.
+- `linux-wayland-headless` — Linux Wayland/headless harness, przygotowany pod AT-SPI/portal/libei.
+- `windows-uia-contract` — kontrakt Windows UI Automation; realne UIA wymaga hosta Windows.
+- `macos-ax-contract` — kontrakt macOS AXUIElement; realne AX wymaga hosta macOS i uprawnień TCC.
+
+Lokalnie bez Dockera:
+
+```bash
+make matrix
+```
+
+W Dockerze:
+
+```bash
+make docker-matrix
+make docker-linux-x11
+make docker-wayland
+make docker-contract
+```
+
+Raporty zapisują się do `artifacts/*.json` oraz `artifacts/backend-matrix.md`.
 
 ## Roadmap
 
 - lokalny etap `artifact://image/crop/...` (Pillow/OpenCV) przed drugim wywołaniem na wycinku
   (mały tekst, kadr) — jako **jawny proces URI**, nie ukryta akcja modelu;
 - `event://` trace store; więcej `aspect://` (car/part, document/missing-data, diagram/wiring-risk);
-- pak obok `uricore`/`uri_router` — połączenie z pętlą kontroli [[verify-before-act]]
-  (`vguard`): tania kotwica → gdy niejednoznaczne, VURI-DecisionCard jako warstwa 3.
-
-
-
-
-
-
-
-
-Pętla percepcja→akcja jest teraz ~3–7× szybsza samą zmianą po stronie klienta (batch + capture-once-OCR-once). Największy dalszy skok da crop-region OCR + easyocr i ciepły screencast — to zmiany w connectorze kvm.
-
-Chcesz, żebym wdrożył crop-region OCR (OCR tylko obszaru, gdzie spodziewam się kotwicy — ~2× na percepcji) i/lub ciepły screencast w connectorze kvm? To dwa największe pozostałe skoki, oba mogę zmierzyć end-to-end.
-
-✻ Cogitated for 6m 18s · 4 shells still running
-
-❯ przetestuj na testowym portalu w lenovo
-
-Testuję realne zadanie na testowym LinkedIn na lenovo — „otwórz kompozytor → zweryfikuj → wpisz" — tą samą logikę starym sposobem (osobne wywołania + osobne kotwice) vs nowym (batch + verify_texts), mierząc end-to-end:
-
-  Ran 1 shell command
-
-2,82× szybciej end-to-end na realnym portalu (24,2 s → 8,6 s). Co więcej — stary NIE otworzył kompozytora (opened=False, więc zrobił mniej), a nowy otworzył I wpisał — czyli realny zysk jest jeszcze większy przy tej samej pracy. Potwierdzam stan końcowy wizją:
-
-  Read 1 file, ran 1 shell command
-
-Test na realnym portalu — wynik uczciwy i pouczający:
-
-Szybkość: 2,82× potwierdzone end-to-end (24,2 s → 8,6 s)
-
-Na żywym LinkedIn na lenovo, to samo zadanie „otwórz kompozytor → zweryfikuj → wpisz":
-- stary (osobne wywołania + osobne kotwice): 24 193 ms,
-- nowy (batch + verify_texts): 8 592 ms — 2,82×, a przy tym zrobił więcej (stary nawet nie otworzył kompozytora).
-
-Składowe (zmierzone wcześniej, tu potwierdzone w praktyce): batch 6,9×, verify_texts 3,8×, OCR@1600 1,9×.
-
-Ale — złapałem realny błąd (i to jest cenne)
-
-Wizja pokazuje: kompozytor otwarty, ale pole tekstowe PUSTE — batch-type się nie zapisał. Przyczyna: timing fokusu — settle() uznał ekran za stabilny, verify_texts potwierdził „Post to Anyone", ale contenteditable jeszcze nie miał fokusu, gdy poszedł type.
-
-To dokładnie potwierdza Twoją zasadę verify-before-act: sama szybkość nie wystarcza — trzeba postcond. Naiwny batch bez sprawdzenia, że tekst wylądował, cicho zawodzi.
-
-Wniosek: szybkość MUSI iść w parze ze strażnikiem
-
-Poprawny szybki wzorzec:
-batch(nawigacja) → verify_texts(['Post to Anyone'])  → OK?
-  → upewnij fokus pola → batch(type)
-  → verify_texts([fragment tekstu])  ← POSTCOND: czy tekst wylądował
-  → jeśli nie: klik/fokus pola i retry
-
-Tak łączę oba zyski tej sesji: 3–7× szybciej (batch+verify_texts) ORAZ niezawodnie (postcond).
-
-Chcesz, żebym dodał do vguard guarded_batch — batch akcji z automatycznym postcond (verify_texts) i retry — i przetestował ponownie na portalu (wpisanie tekstu z potwierdzeniem, że wylądował, w szybkim trybie)? To domknie „szybko i pewnie".
-
-✻ Cooked for 3m 17s · 4 shells still running
-
-❯ popraw i kontynuuj optymalizacje
-
-Poprawiam — dodaję guarded_batch (batch + postcond + retry, naprawia ciche porażki jak niezłapany fokus) i kontynuuję optymalizację. Implementuję w vguard:
-
-● Update(~/github/if-uri/urirun-connector-kvm/vguard.py)
-Added 14 lines
-        dla sekwencji. steps: [{'op':'type','text':...}, {'op':'key','keys':'Return'},
-...]."""
-        return self._run("kvm://host/input/command/task_run", {"steps": steps})
-
-    def guarded_batch(self, steps: list[dict], expect, tries: int = 3) -> dict:
-        """SZYBKO I PEWNIE: batch akcji + POSTCOND (verify_texts) + retry. Naprawia cic
-he
-        porażki — np. `type` który nie złapał fokusu (contenteditable jeszcze nie gotow
-y):
-        pierwszy raz tekst nie ląduje, verify_texts to wykrywa, retry ląduje. Łączy zys
-k
-        prędkości (batch+1 OCR) z niezawodnością (verify-before-act). expect: tekst/lis
-ta."""
-        exp = [expect] if isinstance(expect, str) else list(expect)
-        last = {}
-        for i in range(tries):
-            self.batch(steps)
-            last = self.verify_texts(exp)
-            if all(last.values()):
-                return {"ok": True, "tries": i + 1}
-        return {"ok": False, "tries": tries, "missing": [t for t, ok in last.items() if
- not ok]}
-
-    def dhash(self, png: bytes | None = None, size: int = 16) -> int:
-        """Perceptual hash (różnicowy) — tolerancyjny na drobny szum, czuły na realną z
-mianę
-        układu. Wymaga PIL; bez niego spada do sha1 bajtów (czuły, ale wciąż wykrywa zm
-ianę)."""
-Allowed by auto mode classifier
-
-Testuję guarded_batch na portalu — kompozytor jest otwarty (pusty), wpisuję z postcond+retry:
-
-  Ran 1 shell command
-
-guarded_batch retry nie pomogło — tekst NIE ląduje wcale (nie wyścig fokusu). Diagnozuję: czy problem to batch type (task_run może nie obsługiwać type) czy brak fokusu pola. Test: bezpośredni type vs batch type:
-
-  Ran 1 shell command
-
-Ani bezpośredni, ani batch type nie ląduje — pole nie dostaje inputu w ogóle (nie kwestia batch). Sprawdzam czy klawiatura w ogóle dociera do okna (test w pasku adresu):
-
-  Ran 1 shell command
-
-Klawiatura działa (KBLIVE dotarł do paska) — problem to fokus pola kompozytora: gdy modal jest otwarty ale pole nie ma fokusu, type idzie w próżnię. To co działało wcześniej: type ZARAZ po świeżej nawigacji (auto-fokus). Testuję robust wzorzec — nawiguj świeżo → wpisz od razu → postcond:
-
-  Ran 1 shell command
-
-Nadal nie ląduje. Hipoteza: URL już jest ?shareActive=true, więc nawigacja na TEN SAM URL to no-op — kompozytor nie otwiera się świeżo, pole nie dostaje auto-fokusu. W udanym poście nawigowałem Z INNEGO URL. Testuję dwustopniową nawigację (/feed → ?shareActive) wymuszającą świeże otwarcie:
-
-  Ran 1 shell command
-
-Nawet dwustopniowa nawigacja nie otworzyła kompozytora — to fundamentalna flakiness portalu (?shareActive niekonsekwentnie otwiera kompozytor, fokus pola też). To nie jest problem prędkości — to brak kontroli DOM. Commituję guarded_batch i robię jeszcze jedną, niezależną od kompozytora optymalizację: OCR regionu (mierzalny na dowolnym ekranie):
-
-  Ran 1 shell command
-
-Region-crop nie działa na lenovo — capture ignoruje crop_*/monitor (identyczne 1171 znaków/4,8 s dla wszystkich). OCR floor ~4,8 s zostaje. To wyczerpuje optymalizacje po stronie klienta — dalsze wymagają zmian w connectorze.
-
-Status optymalizacji — co dowiezione (zmierzone, zacommitowane w vguard)
-
-┌────────────────────────────────────────────┬─────────────────────────────┬──────────────┐
-│                  technika                  │            zysk             │    status    │
-├────────────────────────────────────────────┼─────────────────────────────┼──────────────┤
-│ batch (task_run)                           │ 6,9× na sekwencjach akcji   │ ✅           │
-├────────────────────────────────────────────┼─────────────────────────────┼──────────────┤
-│ verify_texts (1 capture+OCR, wiele kotwic) │ 3,8× na percepcji           │ ✅           │
-├────────────────────────────────────────────┼─────────────────────────────┼──────────────┤
-│ OCR max_width=1600                         │ 1,9× (bez utraty trafności) │ ✅           │
-├────────────────────────────────────────────┼─────────────────────────────┼──────────────┤
-│ małe zrzuty dhash/settle                   │ 14× mniej danych            │ ✅           │
-├────────────────────────────────────────────┼─────────────────────────────┼──────────────┤
-│ guarded_batch (batch+postcond+retry)       │ szybko i pewnie             │ ✅           │
-├────────────────────────────────────────────┼─────────────────────────────┼──────────────┤
-│ end-to-end na realnym portalu              │ 2,82×                       │ ✅ zmierzone │
-└────────────────────────────────────────────┴─────────────────────────────┴──────────────┘
-
-Uczciwe wnioski z testów
-
-1. Typowanie w kompozytorze jest flaky na tym portalu — ?shareActive niekonsekwentnie otwiera kompozytor, a pole gubi fokus. To nie prędkość, tylko brak kontroli DOM. Dokładnie przypadek, dla którego method_router wybiera browser:// (DOM) gdy jest CDP/plugin — pewne i szybkie. Klawiatura jest szybka, ale krucha tu.
-2. Region-crop niedostępny — connector kvm ignoruje crop.
-
-Pozostałe lewary — już tylko w connectorze (nie po stronie klienta)
-
-- easyocr/GPU (env: easyocr=false) → OCR z ~4,8 s na <1 s — największy pozostały skok percepcji.
-- ciepły screencast → zrzut ~100 ms zamiast 800.
-- naprawić crop + ciepły worker.
-
-Podsumowanie: po stronie klienta wycisnąłem 3–7× (zacommitowane). Realnie szybsza percepcja i niezawodne typowanie wymagają teraz zmian w connectorze: (a) easyocr, (b) ciepły screencast, (c) ścieżka DOM (plugin/CDP) dla pewnego typowania.
-
-Który z tych trzech connector-side wdrażam i mierzę? Rekomenduję (a) easyocr (najprostszy przez manage-install, największy zysk na percepcji) albo (c) DOM (rozwiązuje i pewność typowania, i szybkość). Co wybierasz?
-
-✻ Worked for 8m 53s · 4 shells still running
-
-❯ dlaczego to wszystko trwa tak długo? co jeszcze mozna poprawić? stworz dokumentacje, aby przystapic do refakotryzacji pozniej
-
-
-
+- realne adaptery za kontraktami `ui://`/`input://`/`view://` (UIA/AX/AT-SPI, SendInput/ydotool,
+  screenshot+OCR) wg `docs/ADAPTER_CONTRACT.md`;
+- integracja z pętlą kontroli verify-before-act (`vguard`): tania kotwica → gdy niejednoznaczne,
+  VURI-DecisionCard jako warstwa 3.

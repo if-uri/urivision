@@ -1,0 +1,73 @@
+{
+  "schema": "schema://runtime/native-host-probe.v1",
+  "platform": {
+    "system": "Linux",
+    "release": "4.4.0",
+    "version": "#1 SMP Sun Jan 10 15:06:54 PST 2016",
+    "machine": "x86_64",
+    "python": "3.13.5",
+    "os_release": {
+      "PRETTY_NAME": "Debian GNU/Linux 13 (trixie)",
+      "NAME": "Debian GNU/Linux",
+      "VERSION_ID": "13",
+      "VERSION": "13 (trixie)",
+      "VERSION_CODENAME": "trixie",
+      "DEBIAN_VERSION_FULL": "13.3",
+      "ID": "debian",
+      "HOME_URL": "https://www.debian.org/",
+      "SUPPORT_URL": "https://www.debian.org/support",
+      "BUG_REPORT_URL": "https://bugs.debian.org/"
+    }
+  },
+  "env": {
+    "CI": "true",
+    "GITHUB_ACTIONS": null,
+    "RUNNER_OS": null,
+    "XDG_SESSION_TYPE": null,
+    "DISPLAY": ":0",
+    "WAYLAND_DISPLAY": null,
+    "DESKTOP_SESSION": null,
+    "XDG_CURRENT_DESKTOP": null
+  },
+  "commands": {
+    "python": "/opt/pyvenv/bin/python",
+    "python3": "/opt/pyvenv/bin/python3",
+    "powershell": null,
+    "pwsh": null,
+    "osascript": null,
+    "xcrun": null,
+    "xcodebuild": null,
+    "adb": null,
+    "docker": null,
+    "podman": null,
+    "gdbus": null,
+    "busctl": "/usr/bin/busctl",
+    "xprop": "/usr/bin/xprop",
+    "xdotool": null,
+    "wmctrl": "/usr/bin/wmctrl",
+    "swaymsg": null,
+    "ydotool": null,
+    "loginctl": "/usr/bin/loginctl",
+    "xrandr": null,
+    "system_profiler": null
+  },
+  "checks": {
+    "session": {
+      "xdg_session_type": null,
+      "display": ":0",
+      "wayland_display": null
+    },
+    "x11_root": {
+      "ok": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "xprop:  unable to open display ':0'\n"
+    },
+    "python_atspi_import": {
+      "ok": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import pyatspi; print('pyatspi-ok')\n    ^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'pyatspi'\n"
+    }
+  }
+}

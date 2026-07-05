@@ -1,0 +1,54 @@
+services:
+  uri-runtime-matrix:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.runtime
+    environment:
+      URIVISION_BACKEND_PROFILE: mock-local
+    volumes:
+      - ../artifacts:/app/artifacts
+
+  linux-x11-novnc:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.x11-novnc
+    environment:
+      URIVISION_BACKEND_PROFILE: linux-x11-novnc
+      DISPLAY: ":99"
+    volumes:
+      - ../artifacts:/app/artifacts
+    profiles: ["linux-x11", "real-linux"]
+
+  linux-wayland-headless:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.wayland
+    environment:
+      URIVISION_BACKEND_PROFILE: linux-wayland-headless
+      XDG_RUNTIME_DIR: /tmp/urivision-runtime
+      WAYLAND_DISPLAY: wayland-1
+    volumes:
+      - ../artifacts:/app/artifacts
+    profiles: ["linux-wayland", "real-linux"]
+
+  windows-uia-contract:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.runtime
+    environment:
+      URIVISION_BACKEND_PROFILE: windows-uia-contract
+    command: ["python", "tools/probe_runtime.py", "--profile", "windows-uia-contract", "--out", "artifacts/windows-uia-contract.json"]
+    volumes:
+      - ../artifacts:/app/artifacts
+    profiles: ["contract", "all-contracts"]
+
+  macos-ax-contract:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.runtime
+    environment:
+      URIVISION_BACKEND_PROFILE: macos-ax-contract
+    command: ["python", "tools/probe_runtime.py", "--profile", "macos-ax-contract", "--out", "artifacts/macos-ax-contract.json"]
+    volumes:
+      - ../artifacts:/app/artifacts
+    profiles: ["contract", "all-contracts"]

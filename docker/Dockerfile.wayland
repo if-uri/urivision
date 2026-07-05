@@ -1,0 +1,26 @@
+# Linux Wayland headless harness. This image validates Wayland-aware contracts
+# and makes limitations explicit; real input injection still requires portal/libei integration.
+FROM python:3.12-slim
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app/src:/app \
+    URIVISION_BACKEND_PROFILE=linux-wayland-headless \
+    XDG_RUNTIME_DIR=/tmp/urivision-runtime \
+    WAYLAND_DISPLAY=wayland-1
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    weston dbus-x11 ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY pyproject.toml README.md ./
+COPY src ./src
+COPY tests ./tests
+COPY examples ./examples
+COPY tools ./tools
+COPY docker/entrypoint-wayland.sh ./docker/entrypoint-wayland.sh
+RUN pip install --no-cache-dir -e . && chmod +x ./docker/entrypoint-wayland.sh
+
+CMD ["./docker/entrypoint-wayland.sh"]

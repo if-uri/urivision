@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.3.0] - 2026-07-05
+
+### Added
+- URI Runtime Control Plane: CapabilityRegistry, parser/matcher URI, orchestrator planów JSON,
+  `@uri_function` (migracja funkcji Pythona do kontraktów URI), katalog capability dla LLM.
+- Native Test Lab: profile natywne OS (Windows/macOS/Linux X11+Wayland/Android/iOS/VNC/RDP/HID),
+  method router, `urivision native-matrix|native-probe|route|route-matrix`, gate confidence.
+- Warstwa Docker: 4 profile backendów (linux-x11-novnc, linux-wayland-headless,
+  windows-uia-contract, macos-ax-contract) + `make docker-*`.
+- CI: native-contract.yml + self-hosted-native-smoke.yml; artifacts/ z macierzami.
+- Dokumentacja: ADAPTER_CONTRACT, NATIVE_TEST_LAB, OS_COVERAGE_MATRIX, METHOD_ROUTER_DESIGN,
+  EVENT_TRACE_SCHEMA, BENCHMARK_PLAN, SECURITY_POLICY.
+
+### Changed
+- Warstwa runtime rozwinięta w `urivision_uri_runtime/` scalona do katalogu głównego
+  (src/tests/tools/docs/docker/examples); podkatalog usunięty. README/pyproject/Makefile
+  zaktualizowane do wersji 0.3.0.
+
 ## [0.1.10] - 2026-07-05
 
 ### Fixed

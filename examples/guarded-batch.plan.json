@@ -1,0 +1,21 @@
+{
+  "schema": "schema://runtime/uri-plan.v1",
+  "goal": "Wyślij batch KVM i sprawdź postcondition, żeby nie zaakceptować cichej porażki inputu.",
+  "steps": [
+    {
+      "id": "guarded_type",
+      "call": "guard://local/batch/command/run",
+      "with": {
+        "steps": [
+          {"op": "type", "text": "guarded input"}
+        ],
+        "expect": {
+          "uri": "view://local/screen/query/text",
+          "with": {"contains": "guarded input"}
+        },
+        "tries": 2
+      },
+      "expect_result": {"ok": true}
+    }
+  ]
+}

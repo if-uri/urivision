@@ -1,7 +1,7 @@
 [project]
 name = "urivision"
-version = "0.1.0"
-description = "VURI — Visual URI Process Language: point at an image + model + aspects + decision question + result schema; get a DecisionCard (decision with evidence), not a description."
+version = "0.3.0"
+description = "VURI — Visual URI Process Language plus URI-addressable runtime, Docker contracts and native OS test lab."
 requires-python = ">=3.10"
 dependencies = []                    # rdzeń bez zależności; runner wymaga: pip install 'urivision[litellm]'
 

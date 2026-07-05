@@ -1,0 +1,7 @@
+# Docker availability in this execution environment
+
+Command check:
+bash: line 1: docker: command not found
+bash: line 1: podman: command not found
+
+Result: Docker/Podman daemon is not available here, so container build/run was not executed in this ChatGPT sandbox.
