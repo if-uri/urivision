@@ -1,0 +1,18 @@
+flowchart TD
+%% generated in 0.00s
+
+    %% Entry points (blue)
+    classDef entry fill:#4dabf7,stroke:#1971c2,color:#fff
+
+    subgraph Core
+        src__urivision__cli__main["main"]
+        src__urivision__runner_litellm__run["run"]
+        src__urivision__run_source["run_source"]
+        src__urivision__run_file["run_file"]
+        src__urivision__run["run"]
+        src__urivision__validators___scheme["_scheme"]
+        src__urivision__validators__validate("validate CC=14")
+        src__urivision__dsl__parse{{parse CC=19}}
+    end
+
+    class src__urivision__cli__main,src__urivision__runner_litellm__run,src__urivision__run entry

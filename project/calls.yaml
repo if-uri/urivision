@@ -1,0 +1,158 @@
+project: /home/tom/github/if-uri/urivision
+generated_from: code2llm call graph analysis
+stats:
+  total_nodes: 13
+  total_edges: 11
+  modules_count: 8
+nodes:
+  src.urivision.resolver.label:
+    name: label
+    module: src.urivision.resolver
+    line: 25
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 3
+  src.urivision.resolver.artifact_path:
+    name: artifact_path
+    module: src.urivision.resolver
+    line: 16
+    cyclomatic_complexity: 6
+    calls_out: 8
+    calls_in: 2
+  src.urivision.compiler.compile_prompt:
+    name: compile_prompt
+    module: src.urivision.compiler
+    line: 15
+    cyclomatic_complexity: 4
+    calls_out: 6
+    calls_in: 1
+  src.urivision.validators._scheme:
+    name: _scheme
+    module: src.urivision.validators
+    line: 15
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 1
+  src.urivision.resolver.model_id:
+    name: model_id
+    module: src.urivision.resolver
+    line: 11
+    cyclomatic_complexity: 1
+    calls_out: 0
+    calls_in: 1
+  src.urivision.run_source:
+    name: run_source
+    module: src.urivision
+    line: 22
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 2
+  src.urivision.dsl.parse:
+    name: parse
+    module: src.urivision.dsl
+    line: 53
+    cyclomatic_complexity: 19
+    calls_out: 35
+    calls_in: 1
+  src.urivision.schemas.resolve_schema:
+    name: resolve_schema
+    module: src.urivision.schemas
+    line: 38
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 1
+  src.urivision.runner_litellm.run:
+    name: run
+    module: src.urivision.runner_litellm
+    line: 20
+    cyclomatic_complexity: 4
+    calls_out: 17
+    calls_in: 0
+  src.urivision.validators.validate:
+    name: validate
+    module: src.urivision.validators
+    line: 19
+    cyclomatic_complexity: 14
+    calls_out: 10
+    calls_in: 1
+  src.urivision.run:
+    name: run
+    module: src.urivision
+    line: 32
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  src.urivision.run_file:
+    name: run_file
+    module: src.urivision
+    line: 27
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 1
+  src.urivision.cli.main:
+    name: main
+    module: src.urivision.cli
+    line: 12
+    cyclomatic_complexity: 5
+    calls_out: 13
+    calls_in: 0
+edges:
+- caller: src.urivision.cli.main
+  callee: src.urivision.run_file
+  call_type: resolved
+- caller: src.urivision.runner_litellm.run
+  callee: src.urivision.resolver.model_id
+  call_type: resolved
+- caller: src.urivision.runner_litellm.run
+  callee: src.urivision.schemas.resolve_schema
+  call_type: resolved
+- caller: src.urivision.runner_litellm.run
+  callee: src.urivision.compiler.compile_prompt
+  call_type: resolved
+- caller: src.urivision.runner_litellm.run
+  callee: src.urivision.resolver.artifact_path
+  call_type: resolved
+- caller: src.urivision.run_source
+  callee: src.urivision.validators.validate
+  call_type: resolved
+- caller: src.urivision.run_source
+  callee: src.urivision.dsl.parse
+  call_type: resolved
+- caller: src.urivision.run_file
+  callee: src.urivision.run_source
+  call_type: resolved
+- caller: src.urivision.run
+  callee: src.urivision.run_source
+  call_type: resolved
+- caller: src.urivision.validators.validate
+  callee: src.urivision.validators._scheme
+  call_type: resolved
+- caller: src.urivision.compiler.compile_prompt
+  callee: src.urivision.resolver.label
+  call_type: resolved
+modules:
+  src.urivision:
+  - src.urivision.run
+  - src.urivision.run_file
+  - src.urivision.run_source
+  src.urivision.cli:
+  - src.urivision.cli.main
+  src.urivision.compiler:
+  - src.urivision.compiler.compile_prompt
+  src.urivision.dsl:
+  - src.urivision.dsl.parse
+  src.urivision.resolver:
+  - src.urivision.resolver.artifact_path
+  - src.urivision.resolver.label
+  - src.urivision.resolver.model_id
+  src.urivision.runner_litellm:
+  - src.urivision.runner_litellm.run
+  src.urivision.schemas:
+  - src.urivision.schemas.resolve_schema
+  src.urivision.validators:
+  - src.urivision.validators._scheme
+  - src.urivision.validators.validate
+entry_points:
+- src.urivision.cli.main
+- src.urivision.run
+- src.urivision.runner_litellm.run

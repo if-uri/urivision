@@ -1,0 +1,63 @@
+# urivision | 12f 503L | python:9,shell:2,less:1 | 2026-07-05
+# stats: 21 func | 4 cls | 12 mod | CC̄=4.0 | critical:2 | cycles:0
+# alerts[5]: CC parse=19; CC validate=14; CC test_parse_reads_all_parts=7; CC artifact_path=6; CC main=5
+# hotspots[5]: run fan=14; main fan=11; parse fan=10; artifact_path fan=6; test_missing_emit_rejected fan=6
+# evolution: baseline
+# Keys: M=modules, D=details, i=imports, e=exports, c=classes, f=functions, m=methods
+M[12]:
+  app.doql.less,27
+  project.sh,66
+  src/urivision/__init__.py,34
+  src/urivision/cli.py,29
+  src/urivision/compiler.py,29
+  src/urivision/dsl.py,94
+  src/urivision/resolver.py,28
+  src/urivision/runner_litellm.py,55
+  src/urivision/schemas.py,42
+  src/urivision/validators.py,39
+  tests/test_dsl.py,55
+  tree.sh,5
+D:
+  src/urivision/__init__.py:
+    e: run_source,run_file,run
+    run_source(text)
+    run_file(path)
+    run(text)
+  src/urivision/cli.py:
+    e: main
+    main(argv)
+  src/urivision/compiler.py:
+    e: compile_prompt
+    compile_prompt(p)
+  src/urivision/dsl.py:
+    e: _parse_options,parse,Model,Process,VuriSyntaxError
+    Model:
+    Process:
+    VuriSyntaxError:
+    _parse_options(blob)
+    parse(text)
+  src/urivision/resolver.py:
+    e: model_id,artifact_path,label
+    model_id(model)
+    artifact_path(uri;roots)
+    label(uri)
+  src/urivision/runner_litellm.py:
+    e: _image_data_url,run
+    _image_data_url(path;mime)
+    run(p)
+  src/urivision/schemas.py:
+    e: resolve_schema
+    resolve_schema(uri)
+  src/urivision/validators.py:
+    e: _scheme,validate,VuriValidationError
+    VuriValidationError:
+    _scheme(uri)
+    validate(p)
+  tests/test_dsl.py:
+    e: test_parse_reads_all_parts,test_missing_emit_rejected,test_bad_scheme_rejected,test_non_image_rejected,test_unknown_statement_rejected,test_dry_run_compiles_call_without_model
+    test_parse_reads_all_parts()
+    test_missing_emit_rejected()
+    test_bad_scheme_rejected()
+    test_non_image_rejected()
+    test_unknown_statement_rejected()
+    test_dry_run_compiles_call_without_model()

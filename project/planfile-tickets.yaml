@@ -1,0 +1,99 @@
+source: code2llm
+# generated in 0.01s
+schema: code2llm.planfile_tickets.v1
+project_root: /home/tom/github/if-uri/urivision
+tickets:
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: src.urivision.dsl.parse (CC=19)'
+  description: 'code2llm reports `src.urivision.dsl.parse` at `src/urivision/dsl.py:53`
+    with cyclomatic complexity 19 (limit 15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - src/urivision/dsl.py
+  dedupe_key: code2llm:cc:src/urivision/dsl.py:src.urivision.dsl.parse
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: artifact_path'
+  description: 'code2llm reports `God Function: artifact_path` in `src/urivision/resolver.py:16`.
+
+
+    Function ''artifact_path'' is oversized: CC=6, fan-out=7, mutations=8.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/urivision/resolver.py
+  dedupe_key: 'code2llm:smell:god_function:src/urivision/resolver.py:16:God Function:
+    artifact_path'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `src/urivision/cli.py:12`.
+
+
+    Function ''main'' is oversized: CC=5, fan-out=11, mutations=11.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/urivision/cli.py
+  dedupe_key: 'code2llm:smell:god_function:src/urivision/cli.py:12:God Function: main'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: run'
+  description: 'code2llm reports `God Function: run` in `src/urivision/runner_litellm.py:20`.
+
+
+    Function ''run'' is oversized: CC=4, fan-out=15, mutations=9.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/urivision/runner_litellm.py
+  dedupe_key: 'code2llm:smell:god_function:src/urivision/runner_litellm.py:20:God
+    Function: run'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: validate'
+  description: 'code2llm reports `God Function: validate` in `src/urivision/validators.py:19`.
+
+
+    Function ''validate'' is oversized: CC=14, fan-out=6, mutations=3.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/urivision/validators.py
+  dedupe_key: 'code2llm:smell:god_function:src/urivision/validators.py:19:God Function:
+    validate'
+applied: []
+skipped: []

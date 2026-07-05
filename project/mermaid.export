@@ -1,0 +1,36 @@
+flowchart TD
+%% generated in 0.00s
+    subgraph src__urivision
+        src__urivision__cli__main["main"]
+        src__urivision__runner_litellm___image_data_url["_image_data_url"]
+        src__urivision__runner_litellm__run["run"]
+        src__urivision__schemas__resolve_schema["resolve_schema"]
+        src__urivision__run_source["run_source"]
+        src__urivision__run_file["run_file"]
+        src__urivision__run["run"]
+        src__urivision__validators___scheme["_scheme"]
+        src__urivision__validators__validate("validate CC=14")
+        src__urivision__dsl___parse_options["_parse_options"]
+        src__urivision__dsl__parse{{parse CC=19}}
+        src__urivision__resolver__model_id["model_id"]
+        src__urivision__resolver__artifact_path["artifact_path"]
+        src__urivision__resolver__label["label"]
+        src__urivision__compiler__compile_prompt["compile_prompt"]
+    end
+    src__urivision__cli__main --> src__urivision__run_file
+    src__urivision__runner_litellm__run --> src__urivision__resolver__model_id
+    src__urivision__runner_litellm__run --> src__urivision__schemas__resolve_schema
+    src__urivision__runner_litellm__run --> src__urivision__compiler__compile_prompt
+    src__urivision__runner_litellm__run --> src__urivision__resolver__artifact_path
+    src__urivision__run_source --> src__urivision__validators__validate
+    src__urivision__run_source --> src__urivision__dsl__parse
+    src__urivision__run_file --> src__urivision__run_source
+    src__urivision__run --> src__urivision__run_source
+    src__urivision__validators__validate --> src__urivision__validators___scheme
+    src__urivision__dsl__parse --> src__urivision__dsl___parse_options
+    src__urivision__compiler__compile_prompt --> src__urivision__resolver__label
+
+    classDef highCC fill:#ff6b6b,stroke:#c92a2a,color:#fff
+    classDef medCC fill:#ffd43b,stroke:#f08c00,color:#000
+    class src__urivision__dsl__parse highCC
+    class src__urivision__validators__validate medCC

@@ -1,0 +1,28 @@
+flowchart LR
+%% generated in 0.00s
+    subgraph src__urivision
+        src__urivision__resolver__label["label"]
+        src__urivision__resolver__artifact_path["artifact_path"]
+        src__urivision__compiler__compile_prompt["compile_prompt"]
+        src__urivision__validators___scheme["_scheme"]
+        src__urivision__resolver__model_id["model_id"]
+        src__urivision__run_source["run_source"]
+        src__urivision__dsl__parse["parse"]
+        src__urivision__schemas__resolve_schema["resolve_schema"]
+        src__urivision__runner_litellm__run["run"]
+        src__urivision__validators__validate["validate"]
+        src__urivision__run["run"]
+        src__urivision__run_file["run_file"]
+        src__urivision__cli__main["main"]
+    end
+    src__urivision__cli__main --> src__urivision__run_file
+    src__urivision__runner_litellm__run --> src__urivision__resolver__model_id
+    src__urivision__runner_litellm__run --> src__urivision__schemas__resolve_schema
+    src__urivision__runner_litellm__run --> src__urivision__compiler__compile_prompt
+    src__urivision__runner_litellm__run --> src__urivision__resolver__artifact_path
+    src__urivision__run_source --> src__urivision__validators__validate
+    src__urivision__run_source --> src__urivision__dsl__parse
+    src__urivision__run_file --> src__urivision__run_source
+    src__urivision__run --> src__urivision__run_source
+    src__urivision__validators__validate --> src__urivision__validators___scheme
+    src__urivision__compiler__compile_prompt --> src__urivision__resolver__label

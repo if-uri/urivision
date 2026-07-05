@@ -1,0 +1,68 @@
+# code2llm call graph | /home/tom/github/if-uri/urivision
+# generated in 0.02s
+# nodes: 13 | edges: 11 | modules: 8
+# CC̄=4.4
+
+HUBS[20]:
+  src.urivision.dsl.parse
+    CC=19  in:1  out:35  total:36
+  src.urivision.runner_litellm.run
+    CC=4  in:0  out:17  total:17
+  src.urivision.cli.main
+    CC=5  in:0  out:13  total:13
+  src.urivision.validators.validate
+    CC=14  in:1  out:10  total:11
+  src.urivision.resolver.artifact_path
+    CC=6  in:2  out:8  total:10
+  src.urivision.compiler.compile_prompt
+    CC=4  in:1  out:6  total:7
+  src.urivision.run_source
+    CC=1  in:2  out:3  total:5
+  src.urivision.resolver.label
+    CC=2  in:3  out:1  total:4
+  src.urivision.run_file
+    CC=1  in:1  out:3  total:4
+  src.urivision.validators._scheme
+    CC=2  in:1  out:1  total:2
+  src.urivision.schemas.resolve_schema
+    CC=2  in:1  out:1  total:2
+  src.urivision.resolver.model_id
+    CC=1  in:1  out:0  total:1
+  src.urivision.run
+    CC=1  in:0  out:1  total:1
+
+MODULES:
+  src.urivision  [3 funcs]
+    run  CC=1  out:1
+    run_file  CC=1  out:3
+    run_source  CC=1  out:3
+  src.urivision.cli  [1 funcs]
+    main  CC=5  out:13
+  src.urivision.compiler  [1 funcs]
+    compile_prompt  CC=4  out:6
+  src.urivision.dsl  [1 funcs]
+    parse  CC=19  out:35
+  src.urivision.resolver  [3 funcs]
+    artifact_path  CC=6  out:8
+    label  CC=2  out:1
+    model_id  CC=1  out:0
+  src.urivision.runner_litellm  [1 funcs]
+    run  CC=4  out:17
+  src.urivision.schemas  [1 funcs]
+    resolve_schema  CC=2  out:1
+  src.urivision.validators  [2 funcs]
+    _scheme  CC=2  out:1
+    validate  CC=14  out:10
+
+EDGES:
+  src.urivision.cli.main → src.urivision.run_file
+  src.urivision.runner_litellm.run → src.urivision.resolver.model_id
+  src.urivision.runner_litellm.run → src.urivision.schemas.resolve_schema
+  src.urivision.runner_litellm.run → src.urivision.compiler.compile_prompt
+  src.urivision.runner_litellm.run → src.urivision.resolver.artifact_path
+  src.urivision.run_source → src.urivision.validators.validate
+  src.urivision.run_source → src.urivision.dsl.parse
+  src.urivision.run_file → src.urivision.run_source
+  src.urivision.run → src.urivision.run_source
+  src.urivision.validators.validate → src.urivision.validators._scheme
+  src.urivision.compiler.compile_prompt → src.urivision.resolver.label

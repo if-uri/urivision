@@ -1,0 +1,26 @@
+// LESS format — define @variables here as needed
+
+app {
+  name: urivision;
+  version: 0.1.0;
+}
+
+dependencies {
+  litellm: litellm>=1.40;
+}
+
+interface[type="cli"] {
+  framework: argparse;
+}
+interface[type="cli"] page[name="urivision"] {
+  entry: urivision.cli:main;
+}
+
+deploy {
+  target: pip;
+}
+
+environment[name="local"] {
+  runtime: python;
+  python_version: >=3.10;
+}

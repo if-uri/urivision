@@ -1,0 +1,279 @@
+name: Code Quality Improvement
+project_name: ''
+project_type: prefactoring
+domain: dev-tools
+goal: Improve code quality using prefact
+goals:
+- Fix all prefact-detected issues
+- Improve code maintainability
+- Ensure consistent code style
+quality_gates:
+- metric: Prefact Issues
+  threshold: '0'
+sprints:
+- id: sprint-1
+  name: Code Quality Improvements
+  duration: 2 weeks
+  objectives:
+  - Fix code quality issues
+  task_patterns:
+  - id: ticket-e4d036e1
+    name: Fix relative-imports issues
+    description: Resolve 6 relative-imports issues in src/urivision/__init__.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - src/urivision/__init__.py
+    rule_id: relative-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-0c8a2320
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/urivision/__init__.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/__init__.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-58e75d86
+    name: Fix relative-imports issues
+    description: Resolve 4 relative-imports issues in src/urivision/compiler.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - src/urivision/compiler.py
+    rule_id: relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-86b3cacb
+    name: Fix string-concat issues
+    description: Resolve 2 string-concat issues in src/urivision/compiler.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/compiler.py
+    rule_id: string-concat
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-745d4e63
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/urivision/compiler.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/compiler.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-701cf536
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in src/urivision/cli.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/cli.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-7e5da924
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/urivision/cli.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/cli.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d53fd5dc
+    name: Fix ai-boilerplate issues
+    description: Resolve 1 ai-boilerplate issues in src/urivision/cli.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/cli.py
+    rule_id: ai-boilerplate
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-27a070a0
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/urivision/dsl.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/dsl.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-74ee80de
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/urivision/schemas.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/schemas.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-62bf42da
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in src/urivision/resolver.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/resolver.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-94a21166
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/urivision/resolver.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/resolver.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-26c51441
+    name: Fix relative-imports issues
+    description: Resolve 8 relative-imports issues in src/urivision/runner_litellm.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - src/urivision/runner_litellm.py
+    rule_id: relative-imports
+    count: 8
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-0dce1485
+    name: Fix string-concat issues
+    description: Resolve 1 string-concat issues in src/urivision/runner_litellm.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/runner_litellm.py
+    rule_id: string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d15ad1f2
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/urivision/runner_litellm.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/runner_litellm.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a3d14675
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in src/urivision/validators.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/validators.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f782fed3
+    name: Fix string-concat issues
+    description: Resolve 1 string-concat issues in src/urivision/validators.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/validators.py
+    rule_id: string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-0ad897b0
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in src/urivision/validators.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - src/urivision/validators.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-04dde2d7
+    name: Fix smart-return-type issues
+    description: Resolve 6 smart-return-type issues in tests/test_dsl.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - tests/test_dsl.py
+    rule_id: smart-return-type
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-47e1b998
+    name: Fix string-concat issues
+    description: Resolve 1 string-concat issues in tests/test_dsl.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_dsl.py
+    rule_id: string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
