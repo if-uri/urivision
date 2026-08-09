@@ -1,7 +1,7 @@
 .PHONY: doctor-setup test matrix native-matrix native-probe confidence docker-matrix docker-linux-x11 docker-wayland docker-contract zip
 
 doctor-setup:
-	python3 -m pip install -e .
+	python3 -m pip install -e ".[test]"
 
 test:
 	PYTHONPATH=src:. python3 -m unittest discover -s tests -v

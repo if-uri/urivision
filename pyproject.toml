@@ -8,6 +8,7 @@ dependencies = []                    # rdzeń bez zależności; runner wymaga: p
 
 [project.optional-dependencies]
 litellm = ["litellm>=1.40"]
+test = ["pytest>=8,<10"]
 
 [project.scripts]
 urivision = "urivision.cli:main"
