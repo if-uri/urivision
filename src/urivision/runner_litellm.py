@@ -5,7 +5,9 @@ from __future__ import annotations
 
 import base64
 import json
+import os
 from pathlib import Path
+from typing import Any
 
 from .compiler import compile_prompt
 from .dsl import Process
@@ -32,22 +34,35 @@ def run(p: Process, *, roots: dict | None = None, dry_run: bool = False) -> dict
         return {"ok": True, "dryRun": True, "call": call}
 
     from litellm import completion, supports_vision  # leniwy import
-    if not supports_vision(model=model):
+
+    api_base = os.environ.get("URIVISION_LLM_API_BASE") or os.environ.get("URIRUN_LLM_API_BASE") or os.environ.get("OPENAI_API_BASE")
+    api_key = os.environ.get("URIVISION_LLM_API_KEY") or os.environ.get("OQLLM_API_KEY") or os.environ.get("OPENAI_API_KEY") or ("dummy" if api_base else None)
+
+    if not api_base and not supports_vision(model=model):
         raise RuntimeError(f"Model does not support vision: {model}")
 
-    resp = completion(
-        model=model,
-        messages=[{"role": "user", "content": [
+    completion_kwargs: dict[str, Any] = {
+        "model": model,
+        "messages": [{"role": "user", "content": [
             {"type": "text", "text": prompt},
             {"type": "image_url",
              "image_url": {"url": _image_data_url(img, p.input_mime), "format": p.input_mime}},
         ]}],
-        response_format={"type": "json_schema", "json_schema": {
+        "response_format": {"type": "json_schema", "json_schema": {
             "name": "decision_card_v1", "schema": schema, "strict": True}},
-        reasoning_effort=reasoning,
-        num_retries=2,
-    )
-    card = json.loads(resp.choices[0].message.content)
+        "reasoning_effort": reasoning,
+        "num_retries": 2,
+    }
+    if api_base:
+        completion_kwargs["api_base"] = api_base
+    if api_key:
+        completion_kwargs["api_key"] = api_key
+
+    resp = completion(**completion_kwargs)
+    raw_content = (resp.choices[0].message.content or "").strip()
+    if raw_content.startswith("```"):
+        raw_content = raw_content.split("\n", 1)[-1].rsplit("```", 1)[0].strip()
+    card = json.loads(raw_content)
     out = artifact_path(p.output_uri, roots)
     Path(out).parent.mkdir(parents=True, exist_ok=True)
     Path(out).write_text(json.dumps(card, ensure_ascii=False, indent=2), encoding="utf-8")
