@@ -19,3 +19,11 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-p wellmanifest_governance"
+
+[tool.wellmanifest]
+standard = "0.20.138"
+revision = "6f15a1b11cec27e41f01cfea8a37f3f9d622f613"
+gate = "project/governance-check.sh"
