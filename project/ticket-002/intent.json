@@ -1,0 +1,82 @@
+{
+  "schema": "new-project.intent/v3",
+  "ticket": "ticket-002",
+  "summary": "support transport override via URIVISION_LLM_API_BASE and OQLLM",
+  "workstream": "application",
+  "classification": {
+    "kind": "FEATURE",
+    "priority": "P2",
+    "origin": "requested"
+  },
+  "allowedPaths": [
+    "src/**",
+    "tests/**",
+    "project/ticket-002/**",
+    "project/TICKETS.md"
+  ],
+  "forbiddenPaths": [
+    "project/ticket-*/user-*.md"
+  ],
+  "stacks": [
+    "python"
+  ],
+  "dependsOn": [],
+  "conflictsWith": [],
+  "integrationTicket": null,
+  "delivery": {
+    "acceptedBaseSha": "b0da3bbf1d7819b2f6255d15712bb6c9c91c1880",
+    "targetBranch": "main",
+    "outcome": "support transport override via URIVISION_LLM_API_BASE and OQLLM",
+    "nonGoals": [
+      "Replacing core LiteLLM dependencies",
+      "Network dependencies during unit test execution"
+    ],
+    "complexity": "S",
+    "estimatedMinutes": 30,
+    "budgets": {
+      "maxImplementationFiles": 5,
+      "maxAffectedComponents": 1,
+      "maxPublicInterfaceChanges": 0,
+      "maxRuntimeDependencies": 0
+    },
+    "architecture": {
+      "status": "accepted",
+      "decision": "Support transport override via URIVISION_LLM_API_BASE and OQLLM in LiteLLM runner without unsafe skips",
+      "components": [
+        {
+          "name": "runner",
+          "paths": [
+            "src/urivision/runner_litellm.py",
+            "tests/test_runner_litellm.py"
+          ]
+        }
+      ],
+      "responsibilityChanges": false,
+      "interfaceChanges": [],
+      "dataChanges": [],
+      "ui": {
+        "impact": "none",
+        "states": [],
+        "evidence": []
+      },
+      "rollback": "Revert commit through git revert"
+    },
+    "runtimeDependencies": [],
+    "validation": [
+      {
+        "criterion": "AC-01",
+        "commands": [
+          "python3 -m pytest -v tests/test_runner_litellm.py"
+        ],
+        "evidence": "receipt:urivision002/tests"
+      },
+      {
+        "criterion": "AC-02",
+        "commands": [
+          "project/governance-check.sh"
+        ],
+        "evidence": "receipt:urivision002/governance"
+      }
+    ]
+  }
+}
