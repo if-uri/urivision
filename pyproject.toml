@@ -24,6 +24,6 @@ where = ["src"]
 addopts = "-p wellmanifest_governance"
 
 [tool.wellmanifest]
-standard = "0.20.138"
-revision = "6f15a1b11cec27e41f01cfea8a37f3f9d622f613"
+standard = "0.20.162"
+revision = "8e6b51dc91a2ac7e1e771908e0fac5e12da0b9a0"
 gate = "project/governance-check.sh"
